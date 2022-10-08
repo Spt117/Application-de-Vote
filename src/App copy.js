@@ -1,30 +1,30 @@
 import './App.css';
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
-import Init from './Components/Init';
+import Vote from '../src/artifacts/contracts/Vote.sol/Vote.json';
 
 function App() {
   const [theData, setTheData] = useState();
   const [theNewData, setTheNewData] = useState();
   const [bool, setBool] = useState();
-  const [get, setGet] = useState()
-  const [set, setSet] = useState()
+  const voteAddress = "0x27A0bF8B26D7Caee8b783de380E7Cc6319E6BA11"
+
   const provider = new ethers.providers.Web3Provider(window.ethereum)
 
   useEffect(() => {
-    if (get) {
-      isConnected()
-      gData()
-      // test()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [get, set, bool])
+    isConnected()
+    gData()
+    // console.log(window.ethereum)
+    // console.log(provider)
+    test()
+  }, [bool])
 
   //récupérer le nom du réseau
-  // async function test() {
-  //   const letest = await provider._networkPromise
-  //   const reseau = letest.name
-  // }
+  async function test() {
+    const letest =  await provider._networkPromise
+    const reseau = letest.name
+    console.log(reseau)
+  }
 
   //connecter metamask à l'aplication 
   async function connectDapp() {
@@ -34,14 +34,18 @@ function App() {
 
   //récupérer la valeur de data (big number)
   async function gData() {
-    const data = await get.getData()
+    const contract = new ethers.Contract(voteAddress, Vote.abi, provider)
+    const data = await contract.getData()
     setTheData(data.toNumber())
   }
 
   //changer la valeur de data
   async function newData() {
-    await window.ethereum.request({ method: 'eth_requestAccounts' })
-    const transaction = await set.setData(theNewData)
+    await window.ethereum.request({method: 'eth_requestAccounts'})
+
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(voteAddress, Vote.abi, signer)
+    const transaction = await contract.setData(theNewData)
     await transaction.wait()
     gData()
   }
@@ -65,7 +69,7 @@ function App() {
 
   return (
     <div className="App">
-      {!bool && <div><button onClick={connectDapp}>Connexion</button></div>}
+      { !bool && <div><button onClick={connectDapp}>Connexion</button></div>}
       <h1>Data</h1>
       <div id='parent'>
         <div>
@@ -77,7 +81,6 @@ function App() {
           <p> <input placeholder='Nouvelle valeur' onChange={inputValue}></input></p>
         </div>
       </div>
-      <Init setSet={setSet} setGet={setGet} />
     </div>
   );
 }
