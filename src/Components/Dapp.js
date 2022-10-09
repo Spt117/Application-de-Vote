@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 
 export default function Dapp({ get, set }) {
     const [theData, setTheData] = useState();
     const [theNewData, setTheNewData] = useState();
+    const [bool, setBool] = useState();
 
     useEffect(() => {
         if (get) {
@@ -19,10 +22,19 @@ export default function Dapp({ get, set }) {
 
     //changer la valeur de data
     async function newData() {
-        await window.ethereum.request({ method: 'eth_requestAccounts' })
-        const transaction = await set.setData(theNewData)
-        await transaction.wait()
-        gData()
+        setBool(true)
+        try {
+            await window.ethereum.request({ method: 'eth_requestAccounts' })
+            const transaction = await set.setData(theNewData)
+            await transaction.wait()
+            gData()
+        }
+        catch {
+            console.log("La transaction a échoué !")
+        }
+        finally {
+            setBool(false)
+        }
     }
 
     //récupérer la valeur dans l'input
@@ -35,11 +47,13 @@ export default function Dapp({ get, set }) {
             <h1>Data</h1>
             <div id='parent'>
                 <div>
-                    <button onClick={gData}>Vérifier la valeur de Data</button>
+                    {/* <Button variant="primary" onClick={gData}>Vérifier la valeur de Data</Button> */}
                     <p>Data : {theData}</p>
                 </div>
                 <div>
-                    <button onClick={newData}>Envoyer une nouvelle valeur</button>
+                    <Button variant="primary" onClick={newData}>
+                        Envoyer une nouvelle valeur {bool && <Spinner animation="border" role="status" size="sm" />}
+                    </Button>
                     <p> <input placeholder='Nouvelle valeur' onChange={inputValue}></input></p>
                 </div>
             </div>

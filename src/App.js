@@ -1,4 +1,5 @@
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from "react";
 import Init from './Components/Init';
 import Dapp from './Components/Dapp';
@@ -6,10 +7,6 @@ import Dapp from './Components/Dapp';
 function App() {
   const [get, setGet] = useState()
   const [set, setSet] = useState()
-  // const [provider, setProvider] = useState()
-
-
-
 
   return (
     <div className="App">
