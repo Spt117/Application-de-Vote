@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from "react";
 import Init from './Components/Init';
 import Dapp from './Components/Dapp';
+import Infura from './Components/Infura';
 
 function App() {
   const [get, setGet] = useState()
@@ -12,6 +13,8 @@ function App() {
     <div className="App">
       <Init setSet={setSet} setGet={setGet} />
       <Dapp get={get} set={set} />
+      <Infura/>
+
     </div>
   );
 }

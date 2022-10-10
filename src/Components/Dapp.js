@@ -5,12 +5,14 @@ import Spinner from 'react-bootstrap/Spinner';
 export default function Dapp({ get, set }) {
     const [theData, setTheData] = useState();
     const [theNewData, setTheNewData] = useState();
-    const [bool, setBool] = useState();
+    const [loader, setLoader] = useState();
+    const [theButton, setButton] = useState();
 
     useEffect(() => {
-        if (get) {
+        if (get && window.ethereum) {
             gData()
         }
+        else{setButton("disable")}
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [get, set])
 
@@ -22,7 +24,7 @@ export default function Dapp({ get, set }) {
 
     //changer la valeur de data
     async function newData() {
-        setBool(true)
+        setLoader(true)
         try {
             await window.ethereum.request({ method: 'eth_requestAccounts' })
             const transaction = await set.setData(theNewData)
@@ -33,7 +35,7 @@ export default function Dapp({ get, set }) {
             console.log("La transaction a échoué !")
         }
         finally {
-            setBool(false)
+            setLoader(false)
         }
     }
 
@@ -47,14 +49,13 @@ export default function Dapp({ get, set }) {
             <h1>Data</h1>
             <div id='parent'>
                 <div>
-                    {/* <Button variant="primary" onClick={gData}>Vérifier la valeur de Data</Button> */}
                     <p>Data : {theData}</p>
                 </div>
                 <div>
-                    <Button variant="primary" onClick={newData}>
-                        Envoyer une nouvelle valeur {bool && <Spinner animation="border" role="status" size="sm" />}
+                    <Button variant="primary" onClick={newData} disabled={theButton}>
+                        Envoyer une nouvelle valeur {loader && <Spinner animation="border" role="status" size="sm" />}
                     </Button>
-                    <p> <input placeholder='Nouvelle valeur' onChange={inputValue}></input></p>
+                    <p><input placeholder='Nouvelle valeur' onChange={inputValue}></input></p>
                 </div>
             </div>
         </div>
