@@ -10,6 +10,7 @@ export default function Dapp({ get, set }) {
 
     useEffect(() => {
         if (get && window.ethereum) {
+            setButton()
             gData()
         }
         else{setButton("disable")}

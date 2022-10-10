@@ -42,10 +42,10 @@ export default function Init({ setSet, setGet, setProvider }) {
       const id = network.chainId
 
       if (id === 5) {
-        address = "0x27A0bF8B26D7Caee8b783de380E7Cc6319E6BA11"
+        address = "0x534F9541610BC6236D6CC22180EE37F283A06C18"
       }
       else if (id === 11155111) {
-        address = "0x4Aec1F50164e9B09EcD966495993a47fb0B80467"
+        address = "0x9a8Bc42F255E1BC214c9f0D8c383CD5A785Ef390"
       }
 
       const getContract = new ethers.Contract(address, Vote.abi, provider)

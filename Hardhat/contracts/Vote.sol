@@ -6,9 +6,11 @@ pragma solidity 0.8.16;
 
 contract Vote {
     uint data;
+    event NewData(uint newdata);
     
     function setData(uint _data) public {
         data = _data;
+        emit NewData(_data);
     }
 
     function getData() public view returns(uint) {
