@@ -3,13 +3,9 @@ import { useEffect, useState } from "react";
 import Vote from '../../src/artifacts/contracts/Vote.sol/Vote.json';
 import Spinner from 'react-bootstrap/Spinner';
 
-export default function Init({ setSet, setGet, setProvider }) {
-  const [state, setState] = useState(0)
+export default function Init({ setSet, setGet }) {
   const [bool, setBool] = useState();
   const [loader, setLoader] = useState();
-
-  // const provider = new ethers.providers.Web3Provider(window.ethereum, "any")
-
   let address
 
   useEffect(() => {
@@ -19,8 +15,9 @@ export default function Init({ setSet, setGet, setProvider }) {
       network()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state]);
+  }, []);
 
+  //détecter les changements de réseau et MAJ des constantes
   function network() {
     const provider = new ethers.providers.Web3Provider(window.ethereum, "any")
     //relancer init en cas de changement de réseau
@@ -29,7 +26,8 @@ export default function Init({ setSet, setGet, setProvider }) {
       // event with a null oldNetwork along with the newNetwork. So, if the
       // oldNetwork exists, it represents a changing network
       if (oldNetwork) {
-        setState(state + 1)
+        init()
+        network()
       }
     });
   }
@@ -75,15 +73,13 @@ export default function Init({ setSet, setGet, setProvider }) {
     }
   }
 
-  //vérifier la connexion metamask
+  //vérifier la connexion metamask et agir sur le bouton de connexion à l'application
   async function isConnected() {
     try {
       const accounts = await window.ethereum.request({ method: 'eth_accounts' });
       if (accounts.length) {
-        // console.log(`You're connected to: ${accounts[0]}`)
         setBool(true)
       } else {
-        // console.log("Metamask is not connected");
         setBool(false)
       }
     }
