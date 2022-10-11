@@ -10,6 +10,11 @@ export default function Infura() {
     const getGoerli = new ethers.Contract("0x534F9541610BC6236D6CC22180EE37F283A06C18", Vote.abi, providerGoerli)
     const getSepolia = new ethers.Contract("0x9a8Bc42F255E1BC214c9f0D8c383CD5A785Ef390", Vote.abi, providerSepolia)
 
+    getGoerli.on("NewData", (newdata) => {
+        console.log(newdata.toNumber())
+        getValues()
+    })
+
     useEffect(() => {
         getValues()
         // eslint-disable-next-line

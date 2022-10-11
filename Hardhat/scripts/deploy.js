@@ -10,13 +10,13 @@ async function main() {
 
 
   // const lockedAmount = hre.ethers.utils.parseEther("1");
-console.log("Début du déploiement")
+console.log("Début du déploiement !")
   const Vote = await hre.ethers.getContractFactory("Vote");
-  console.log("Déploiement en cours")
+  console.log("Déploiement en cours !")
   const vote = await Vote.deploy();
-
+  console.log("Déploiement en phase terminale !")
   await vote.deployed();
-console.log("Le contrat est déployé à l'adresse :" + vote.address)
+console.log("Le contrat est déployé à l'adresse: " + vote.address)
   
 }
 
