@@ -27,7 +27,7 @@ export default function Dapp({ get, set }) {
     async function newData() {
         setLoader(true)
         try {
-            await window.ethereum.request({ method: 'eth_requestAccounts' })
+            // await window.ethereum.request({ method: 'eth_requestAccounts' })
             const transaction = await set.setData(theNewData)
             await transaction.wait()
             gData()
