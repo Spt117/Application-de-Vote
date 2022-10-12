@@ -21,12 +21,12 @@ export default function Infura() {
         getSepolia.once("NewData", (newdata) => {
             console.log(newdata.toNumber())
             setSepolia(newdata.toNumber())
+            getValues()
         })
     }
 
     useEffect(() => {
         getValues()
-        test()
         // eslint-disable-next-line
     }, [])
 
@@ -35,6 +35,7 @@ export default function Infura() {
         setGoerli(Goerli.toNumber())
         const Sepolia = await getSepolia.getData()
         setSepolia(Sepolia.toNumber())
+        test()
     }
 
     return (

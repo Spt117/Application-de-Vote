@@ -56,7 +56,7 @@ export default function Dapp({ get, set }) {
                     <Button variant="primary" onClick={newData} disabled={theButton}>
                         Envoyer une nouvelle valeur {loader && <Spinner animation="border" role="status" size="sm" />}
                     </Button>
-                    <p><input placeholder='Nouvelle valeur' onChange={inputValue}></input></p>
+                    <p><input placeholder='Nouvelle valeur' onChange={inputValue} onKeyPress></input></p>
                 </div>
             </div>
         </div>
