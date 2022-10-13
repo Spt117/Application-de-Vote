@@ -2,7 +2,7 @@ import { sequence } from "0xsequence";
 import { useEffect, useState } from "react";
 import Spinner from 'react-bootstrap/Spinner';
 import { ethers } from "ethers";
-import Vote from '../artifacts/contracts/Vote.sol/Vote.json';
+import Vote from '../../src/artifacts/contracts/Vote.sol/Vote.json';
 
 
 export default function Sequence({ setSet, setGet }) {
@@ -43,6 +43,7 @@ export default function Sequence({ setSet, setGet }) {
             console.log('users signed connect proof to valid their account address:', connectDetails.proof)
             if (connectDetails.connected) { setButton(true) }
             else setButton(false)
+            initialisation()
         }
         catch {
             console.log("La connexion a échoué !")
@@ -58,7 +59,7 @@ export default function Sequence({ setSet, setGet }) {
         wallet.openWallet();
     }
 
-    function go() {
+    function initialisation() {
         const wallet = sequence.getWallet()
         const provider = wallet.getProvider()
         const signer = wallet.getSigner()
@@ -74,8 +75,6 @@ export default function Sequence({ setSet, setGet }) {
             {!theButton && <button onClick={connect}>Connexion {loader && <Spinner animation="border" role="status" size="sm" />}</button>}
             <p></p>
             <button onClick={openSequence}>Open Walet</button>
-            <p></p>
-            <button onClick={go}>Go</button>
         </div>
     )
 
