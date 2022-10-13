@@ -2,7 +2,7 @@ import { sequence } from "0xsequence";
 import { useEffect, useState } from "react";
 import Spinner from 'react-bootstrap/Spinner';
 import { ethers } from "ethers";
-import Vote from '../../src/artifacts/contracts/Vote.sol/Vote.json';
+import Vote from '../artifacts/contracts/Vote.sol/Vote.json';
 
 
 export default function Sequence({ setSet, setGet }) {
