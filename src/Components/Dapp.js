@@ -48,7 +48,7 @@ export default function Dapp({ get, set }) {
     return (
         <div>
             <h1>Data</h1>
-            <div id='parent'>
+            <div >
                 <div>
                     <p>Data : {theData}</p>
                 </div>

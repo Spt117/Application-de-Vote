@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Vote from '../../src/artifacts/contracts/Vote.sol/Vote.json';
 import Spinner from 'react-bootstrap/Spinner';
 
-export default function Init({ setSet, setGet }) {
+export default function Init({ setSet, setGet, setAddress, setId }) {
   const [bool, setBool] = useState();
   const [loader, setLoader] = useState();
   let address
@@ -15,7 +15,7 @@ export default function Init({ setSet, setGet }) {
       network()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [bool]);
 
   //détecter les changements de réseau et MAJ des constantes
   function network() {
@@ -34,27 +34,30 @@ export default function Init({ setSet, setGet }) {
 
   //initialiser les constantes en fonction du réseau
   async function init() {
-    try {
-      const provider = new ethers.providers.Web3Provider(window.ethereum, "any")
-      const network = await provider._networkPromise
-      const id = network.chainId
 
+    const provider = new ethers.providers.Web3Provider(window.ethereum, "any")
+    const network = await provider._networkPromise
+    const id = network.chainId
+    setId(id)
+
+    try {
       if (id === 5) {
         address = "0x534F9541610BC6236D6CC22180EE37F283A06C18"
       }
       else if (id === 11155111) {
         address = "0x9a8Bc42F255E1BC214c9f0D8c383CD5A785Ef390"
       }
-
       const getContract = new ethers.Contract(address, Vote.abi, provider)
       const signer = provider.getSigner()
       const setContract = new ethers.Contract(address, Vote.abi, signer)
       setSet(setContract)
       setGet(getContract)
     }
+
     catch {
       console.log("Erreur d'initialisation : le contrat n'est pas déployé sur ce réseau !")
     }
+
   }
 
   //connecter metamask à l'aplication 
@@ -78,6 +81,7 @@ export default function Init({ setSet, setGet }) {
     try {
       const accounts = await window.ethereum.request({ method: 'eth_accounts' });
       if (accounts.length) {
+        setAddress(accounts[0])
         setBool(true)
       } else {
         setBool(false)

@@ -37,7 +37,7 @@
   }
 }
 
-#parent{
+.parent{
   padding-top: 1%;
   background-color: aliceblue;
   display: flex;

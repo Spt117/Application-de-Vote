@@ -99,7 +99,8 @@ contract Vote is Ownable {
         if (voters[msg.sender].hasVoted) {
             revert("You have already voted");
         }
-        if(_id >= proposalsArray.length) revert("Cette proposition n'existe pas !");
+        if (_id >= proposalsArray.length)
+            revert("Cette proposition n'existe pas !");
         if (
             keccak256(abi.encodePacked(proposalsArray[_id].description)) ==
             keccak256(abi.encodePacked(""))
@@ -187,6 +188,8 @@ contract Vote is Ownable {
             }
             delete winningProposalID;
             delete proposalsArray;
+            workflowStatus = WorkflowStatus.RegisteringVoters;
+            emit WorkflowStatusChange(WorkflowStatus.RegisteringVoters);
         } else {
             for (uint256 v = 0; v < voter.length; v++) {
                 voters[voter[v]] = Voter(true, false, 0);
@@ -195,10 +198,13 @@ contract Vote is Ownable {
             for (uint256 p = 0; p < proposalsArray.length; p++) {
                 if (vote > proposalsArray[p].voteCount) {
                     proposalsArray[p] = Proposal("", 0);
-                }
-                else proposalsArray[p].voteCount = 0;
+                } else proposalsArray[p].voteCount = 0;
             }
             delete winningProposalID;
+            workflowStatus = WorkflowStatus.ProposalsRegistrationEnded;
+            emit WorkflowStatusChange(
+                WorkflowStatus.ProposalsRegistrationEnded
+            );
         }
     }
 }
