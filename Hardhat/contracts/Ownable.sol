@@ -68,6 +68,7 @@ abstract contract Ownable is Context {
      */
     function transferOwnership(address newOwner) public virtual {
         require(newOwner != address(0), "Ownable: new owner is the zero address");
+        require(newOwner == msg.sender, "Vous ne pouvez pas envoyer ce contrat sur une autre addresse que la votre");
         _transferOwnership(newOwner);
     }
 

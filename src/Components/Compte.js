@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Spinner from 'react-bootstrap/Spinner';
 
-export default function Compte({ addr, id, owner, set }) {
+export default function Compte({ addr, id, owner, set, get, setOwner }) {
     const [loader, setLoader] = useState()
     const [ownerShip, setOwnerShip] = useState()
     const truncate = /^(0x[a-zA-Z0-9]{4})[a-zA-Z0-9]+([a-zA-Z0-9]{4})$/;
+
+    useEffect(() => {
+        if (owner) {
+            eventOwner()
+        }
+        // eslint-disable-next-line
+    }, [eventOwner])
 
     function truncateAddr(address) {
         const match = address.match(truncate);
@@ -37,6 +44,12 @@ export default function Compte({ addr, id, owner, set }) {
         finally {
             setLoader(false)
         }
+    }
+
+    function eventOwner() {
+        get.on("OwnershipTransferred", (oldOwner, newOwner) => {
+            setOwner(newOwner)
+        })
     }
 
     if (addr)

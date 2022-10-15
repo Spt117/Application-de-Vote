@@ -18,7 +18,7 @@ function App() {
       <div className='parent'>
         <div>
       <Init setSet={setSet} setGet={setGet} setAddress={setAddress} setId={setId} setOwner={setOwner} owner={owner} setContract={setContract}/>
-      <Compte addr={addr} id={id} owner={owner} set={set}/>
+      <Compte addr={addr} id={id} owner={owner} set={set} get={get} setOwner={setOwner}/>
       </div>
       <Dapp get={get} set={set} owner={owner} />
       </div>
