@@ -3,10 +3,9 @@ import { useEffect, useState } from "react";
 import Vote from '../../src/artifacts/contracts/Vote.sol/Vote.json';
 import Spinner from 'react-bootstrap/Spinner';
 
-export default function Init({ setSet, setGet, setAddress, setId }) {
+export default function Init({ setSet, setGet, setAddress, setId, setOwner, setContract }) {
   const [bool, setBool] = useState();
   const [loader, setLoader] = useState();
-  let address
 
   useEffect(() => {
     if (window.ethereum) {
@@ -41,23 +40,30 @@ export default function Init({ setSet, setGet, setAddress, setId }) {
     setId(id)
 
     try {
+      let address
       if (id === 5) {
-        address = "0x534F9541610BC6236D6CC22180EE37F283A06C18"
+        address = "0x1385c8b07f25E2f7d0CC03Af3C25626aabE215f8"
       }
       else if (id === 11155111) {
-        address = "0x9a8Bc42F255E1BC214c9f0D8c383CD5A785Ef390"
+         address = "0xdcc4eC1F1475f0256A867145E6d52DDfd7F0639d"
       }
       const getContract = new ethers.Contract(address, Vote.abi, provider)
       const signer = provider.getSigner()
-      const setContract = new ethers.Contract(address, Vote.abi, signer)
-      setSet(setContract)
+      const setTheContract = new ethers.Contract(address, Vote.abi, signer)
+      const addr = await getContract.owner()
+      setOwner(addr)
+      setSet(setTheContract)
       setGet(getContract)
+      setContract(address)
+      if(bool === true){
+        const signerAddress = await signer.getAddress()
+        setAddress(signerAddress)
+      }
     }
 
     catch {
       console.log("Erreur d'initialisation : le contrat n'est pas déployé sur ce réseau !")
     }
-
   }
 
   //connecter metamask à l'aplication 
@@ -81,7 +87,6 @@ export default function Init({ setSet, setGet, setAddress, setId }) {
     try {
       const accounts = await window.ethereum.request({ method: 'eth_accounts' });
       if (accounts.length) {
-        setAddress(accounts[0])
         setBool(true)
       } else {
         setBool(false)
@@ -94,7 +99,11 @@ export default function Init({ setSet, setGet, setAddress, setId }) {
 
   return (
     <div>
-      {!bool && window.ethereum && <div><button onClick={connectDapp}>Connexion {loader && <Spinner animation="border" role="status" size="sm" />}</button></div>}
+      {!bool && window.ethereum &&
+        <div>
+          <button onClick={connectDapp}>Connexion {loader && <Spinner animation="border" role="status" size="sm" />}</button>
+        </div>}
+
     </div>
   )
 }

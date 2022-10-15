@@ -4,11 +4,11 @@ import { useState } from "react";
 import Init from './Components/Init';
 import Dapp from './Components/Dapp';
 import Compte from './Components/Compte';
-// import Infura from './Components/Infura';
-// import Sequence from './Components/Sequence';
 
 function App() {
+  const [owner, setOwner] = useState()
   const [addr, setAddress] = useState()
+  const [contract, setContract] = useState()
   const [id, setId] = useState()
   const [get, setGet] = useState()
   const [set, setSet] = useState()
@@ -17,13 +17,13 @@ function App() {
     <div className="App">
       <div className='parent'>
         <div>
-      <Init setSet={setSet} setGet={setGet} setAddress={setAddress} setId={setId} />
-      <Compte addr={addr} id={id}/>
+      <Init setSet={setSet} setGet={setGet} setAddress={setAddress} setId={setId} setOwner={setOwner} owner={owner} setContract={setContract}/>
+      <Compte addr={addr} id={id} owner={owner} set={set}/>
       </div>
-      <Dapp get={get} set={set} />
+      <Dapp get={get} set={set} owner={owner} />
       </div>
-      {/* <Infura/> */}
-      {/* <Sequence setGet={setGet} setSet={setSet}/> */}
+      <h6>Addresse du contrat :</h6>
+      <p>{contract}</p>
     </div>
   ); 
 }
