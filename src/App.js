@@ -25,8 +25,8 @@ function App() {
           <Owner addr={addr} id={id} owner={owner} set={set} statut={statut} get={get} />
         </div>
         <Dapp get={get} set={set} owner={owner} setStatus={setStatus} statut={statut} />
-        <Propositions get={get}/>
       </div>
+        <Propositions set={set}/>
       <h6>Addresse du contrat :</h6>
       <p>{contract}</p>
       <p>Propriétaire du contrat : {owner}</p>

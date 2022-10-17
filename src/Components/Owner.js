@@ -50,7 +50,7 @@ export default function Owner({ addr, owner, statut, set, get }) {
     async function registerVoter() {
         setLoaderRegister(true)
         try {
-            const register = await get.getVoter(addrRegister)
+            const register = await set.getVoter(addrRegister)
             if (!register[0]) {
                 const transaction = await set.addVoter(addrRegister)
                 await transaction.wait()

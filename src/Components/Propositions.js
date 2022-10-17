@@ -1,27 +1,58 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 
-export default function Propositions({ get }) {
-    let proposalArray
+export default function Propositions({ set }) {
+    let [proposalArray, setProposalArray] = useState()
+    // let proposalArray = []
+
+
 
     useEffect(() => {
-        if (get)
+        if (set)
             récupérerPropositions()
-    }, [get])
+            // eslint-disable-next-line
+    }, [set])
 
     async function récupérerPropositions() {
-        const event = await get.queryFilter("ProposalRegistered", 0)
-        console.log(event.length)
+        let proposals = [];
+        const event = await set.queryFilter("ProposalRegistered", 0)
         for (let i = 0; i < event.length; i++) {
-            const propositions = await get.getOneProposal(i)
-            proposalArray.push(
-                {
-                    id: i,
-                    desc: propositions.description,
-                    voteCount: propositions.voteCount
-                }
-            )
+            const propositions = await set.getOneProposal(i)
+            proposals.push(propositions)
         }
-        console.log(proposalArray)
+        setProposalArray(proposals)
+        eventProposition()
     }
+
+    function eventProposition() {
+        set.on("ProposalRegistered", async (description, voteCount) => {
+            récupérerPropositions()
+          })
+    }
+    
+// eslint-disable-next-line
+    if(!proposalArray == 0)
+    return (
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Proposals Description</th>
+                        <th>VoteCount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {proposalArray.map((propo, index) => (
+                        <tr key={index}>
+                            <td>{propo[0]}</td>
+                            <td>{propo[1].toNumber()}</td>
+                        </tr>
+                    ))}
+
+                </tbody>
+            </table>
+            <hr />
+        </div>
+    )
+
 }

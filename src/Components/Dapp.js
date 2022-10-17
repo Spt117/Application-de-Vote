@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Spinner from "react-bootstrap/esm/Spinner"
 
 export default function Dapp({ get, set, owner, statut }) {

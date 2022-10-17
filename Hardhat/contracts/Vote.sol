@@ -37,7 +37,7 @@ contract Vote is Ownable {
     event GetWinning(uint[] winningProposal);
 
     modifier onlyVoters() {
-     require(voters[msg.sender].isRegistered, "You're not a voter");
+     require(voters[msg.sender].isRegistered || msg.sender == owner(), "You're not a voter");
         _;
     }
 
@@ -48,6 +48,7 @@ contract Vote is Ownable {
     function getVoter(address _addr)
         external
         view
+        onlyVoters
         returns (Voter memory)
     {
         return voters[_addr];
