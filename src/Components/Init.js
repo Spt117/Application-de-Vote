@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Vote from '../../src/artifacts/contracts/Vote.sol/Vote.json';
 import Spinner from 'react-bootstrap/Spinner';
 
-export default function Init({ setSet, setGet, setAddress, setId, setOwner, setContract }) {
+export default function Init({ setSet, setGet, setAddress, setId, setOwner, setContract, setStatus, get, owner }) {
   const [bool, setBool] = useState();
   const [loader, setLoader] = useState();
 
@@ -15,6 +15,14 @@ export default function Init({ setSet, setGet, setAddress, setId, setOwner, setC
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bool]);
+
+  useEffect(() => {
+    if(owner) {
+        getStatut()
+        eventStatut()
+    }
+    // eslint-disable-next-line
+}, [eventStatut])
 
   //détecter les changements de réseau et MAJ des constantes
   function network() {
@@ -42,20 +50,20 @@ export default function Init({ setSet, setGet, setAddress, setId, setOwner, setC
     try {
       let address
       if (id === 5) {
-        address = "0x1385c8b07f25E2f7d0CC03Af3C25626aabE215f8"
+        address = "0xc7A3E1c63eA376529Ce9F3A22E7bCec473E0e083"
       }
       else if (id === 11155111) {
-         address = "0xdcc4eC1F1475f0256A867145E6d52DDfd7F0639d"
+        address = "0xaeEf43Bd5D9dc45Dd468a21E84c40443748c6dA7"
       }
       const getContract = new ethers.Contract(address, Vote.abi, provider)
       const signer = provider.getSigner()
       const setTheContract = new ethers.Contract(address, Vote.abi, signer)
-      const addr = await getContract.owner()
-      setOwner(addr)
+      const owner = await getContract.owner()
+      setOwner(owner)
       setSet(setTheContract)
       setGet(getContract)
       setContract(address)
-      if(bool === true){
+      if (bool === true) {
         const signerAddress = await signer.getAddress()
         setAddress(signerAddress)
       }
@@ -95,6 +103,19 @@ export default function Init({ setSet, setGet, setAddress, setId, setOwner, setC
     catch {
       console.log("Erreur dans la vérification de connexion")
     }
+  }
+
+  // récupération du statut en cours
+  async function getStatut() {
+    const statut = await get.workflowStatus()
+    setStatus(statut)
+  }
+
+  // mise à jours du statut
+  function eventStatut() {
+    get.on("WorkflowStatusChange", (newStatus) => {
+      setStatus(newStatus)
+    })
   }
 
   return (

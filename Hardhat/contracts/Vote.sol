@@ -4,17 +4,17 @@ pragma solidity 0.8.16;
 import "./Ownable.sol";
 
 contract Vote is Ownable {
-    uint256[] public winningProposalID;
+    uint[] winningProposalID;
 
     struct Voter {
         bool isRegistered;
         bool hasVoted;
-        uint256 votedProposalId;
+        uint votedProposalId;
     }
 
     struct Proposal {
         string description;
-        uint256 voteCount;
+        uint voteCount;
     }
 
     enum WorkflowStatus {
@@ -32,11 +32,12 @@ contract Vote is Ownable {
 
     event VoterRegistered(address voterAddress);
     event WorkflowStatusChange(WorkflowStatus newStatus);
-    event ProposalRegistered(uint256 proposalId);
-    event Voted(address voter, uint256 proposalId);
+    event ProposalRegistered(uint proposalId);
+    event Voted(address voter, uint proposalId);
+    event GetWinning(uint[] winningProposal);
 
     modifier onlyVoters() {
-        require(voters[msg.sender].isRegistered, "You're not a voter");
+     require(voters[msg.sender].isRegistered, "You're not a voter");
         _;
     }
 
@@ -47,13 +48,12 @@ contract Vote is Ownable {
     function getVoter(address _addr)
         external
         view
-        onlyVoters
         returns (Voter memory)
     {
         return voters[_addr];
     }
 
-    function getOneProposal(uint256 _id)
+    function getOneProposal(uint _id)
         external
         view
         onlyVoters
@@ -93,7 +93,7 @@ contract Vote is Ownable {
 
     // ::::::::::::: VOTE ::::::::::::: //
 
-    function setVote(uint256 _id) external onlyVoters {
+    function setVote(uint _id) external onlyVoters {
         if (workflowStatus != WorkflowStatus.VotingSessionStarted)
             revert("Voting session havent started yet");
         if (voters[msg.sender].hasVoted) {
@@ -105,7 +105,7 @@ contract Vote is Ownable {
             keccak256(abi.encodePacked(proposalsArray[_id].description)) ==
             keccak256(abi.encodePacked(""))
         ) {
-            revert("This proposal is empty.");
+            revert("This proposal is empty");
         }
         voters[msg.sender].votedProposalId = _id;
         voters[msg.sender].hasVoted = true;
@@ -158,9 +158,9 @@ contract Vote is Ownable {
             "Current status is not voting session ended"
         );
 
-        uint256 _winningProposalId;
+        uint _winningProposalId;
 
-        for (uint256 p = 0; p < proposalsArray.length; p++) {
+        for (uint p = 0; p < proposalsArray.length; p++) {
             if (
                 proposalsArray[p].voteCount >
                 proposalsArray[_winningProposalId].voteCount
@@ -169,7 +169,7 @@ contract Vote is Ownable {
             }
         }
 
-        for (uint256 p = 0; p < proposalsArray.length; p++) {
+        for (uint p = 0; p < proposalsArray.length; p++) {
             if (
                 proposalsArray[p].voteCount ==
                 proposalsArray[_winningProposalId].voteCount
@@ -183,7 +183,7 @@ contract Vote is Ownable {
 
     function reset(address[] memory voter) external onlyOwner {
         if (winningProposalID.length == 1) {
-            for (uint256 v = 0; v < voter.length; v++) {
+            for (uint v = 0; v < voter.length; v++) {
                 voters[voter[v]] = Voter(false, false, 0);
             }
             delete winningProposalID;
@@ -191,11 +191,11 @@ contract Vote is Ownable {
             workflowStatus = WorkflowStatus.RegisteringVoters;
             emit WorkflowStatusChange(WorkflowStatus.RegisteringVoters);
         } else {
-            for (uint256 v = 0; v < voter.length; v++) {
+            for (uint v = 0; v < voter.length; v++) {
                 voters[voter[v]] = Voter(true, false, 0);
             }
-            uint256 vote = proposalsArray[winningProposalID[0]].voteCount;
-            for (uint256 p = 0; p < proposalsArray.length; p++) {
+            uint vote = proposalsArray[winningProposalID[0]].voteCount;
+            for (uint p = 0; p < proposalsArray.length; p++) {
                 if (vote > proposalsArray[p].voteCount) {
                     proposalsArray[p] = Proposal("", 0);
                 } else proposalsArray[p].voteCount = 0;
