@@ -4,7 +4,9 @@ import Spinner from "react-bootstrap/esm/Spinner"
 export default function Dapp({ get, set, owner, statut }) {
     const statuts = ["Enregistrement des électeurs", "Enregistrement des propositions", "Enregistrement des propositions terminé", "Vote en cours", "Vote terminé", "Résultat du vote"]
     const [loader, setLoader] = useState()
+    const [loaderVote, setLoaderVote] = useState()
     const [proposition, setProposition] = useState()
+    const [vote, setVote] = useState()
 
 
     async function ajouterProposition() {
@@ -21,17 +23,35 @@ export default function Dapp({ get, set, owner, statut }) {
         }
     }
 
+    async function voted() {
+        setLoaderVote(true)
+        try {
+            const transaction = await set.setVote(vote)
+            await transaction.wait()
+        }
+        catch {
+            alert("Votre vote a achoué, vérifiez que votre numéro de proposition soit valable.")
+        }
+        finally {
+            setLoaderVote(false)
+        }
+    }
 
     return (
         <div>
             <h4>Statut de la session de vote</h4>
             <p>{statuts[statut]}</p>
-            <hr></hr>
             {statut === 1 && <div>
+            <hr/>
                 <h5>Vous pouvez enregistrer votre proposition :</h5>
-                <input placeholder="Votre proposition" onChange={(e) => setProposition(e.target.value)}></input>
+                <input placeholder="Votre proposition" onChange={(e) => setProposition(e.target.value)} />
                 <button onClick={ajouterProposition}>Enregistrer {loader && <Spinner animation="border" role="status" size="sm" />}</button>
             </div>}
+            {statut === 3 && <div>
+                <h5>Vous pouvez voter !</h5>
+                <input placeholder="Numéro de la proposition" onChange={(e) => setVote(e.target.value)}/>
+                <button onClick={voted}>Voter {loaderVote && <Spinner />}</button>
+                </div>}
         </div>
     )
 }

@@ -67,12 +67,12 @@ export default function Owner({ addr, owner, statut, set, get }) {
 
     if (owner === addr)
         return (
-            <div>
+            <div id="owner">
                 <div>
                     <h6>Changer le statut de la session de vote :</h6>
                     <button onClick={changeStatut}>Statut suivant {loaderStatut && <Spinner animation="border" role="status" size="sm" />}</button>
                 </div>
-                {statut === 0 && <div>
+                {statut === 0 && <div><hr/>
                     <h6>Vous pouvez enregistrer les électeurs :</h6>
                     <input placeholder="Adresse" onChange={(e) => setAddrRegister(e.target.value)}></input>
                     <button onClick={registerVoter}>Enregistrer {loaderRegister && <Spinner animation="border" role="status" size="sm" />}</button>

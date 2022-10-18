@@ -32,14 +32,31 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
-.parent{
-  padding-top: 1%;
+.parent {
+  padding: 0.5%;
   background-color: aliceblue;
   display: flex;
   justify-content: space-around;
+}
+
+#tableau {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#one {
+  background-color: whitesmoke;
+  padding-bottom: 1%;
+}
+
+#getVote {
+  background-color: antiquewhite;
+  padding: 1.5%;
+  width: 125%;
 }

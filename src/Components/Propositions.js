@@ -33,17 +33,19 @@ export default function Propositions({ set }) {
 // eslint-disable-next-line
     if(!proposalArray == 0)
     return (
-        <div>
-            <table>
+        <div className="parentTableau">
+            <table id="tableau">
                 <thead>
                     <tr>
-                        <th>Proposals Description</th>
-                        <th>VoteCount</th>
+                        <th>Numéro de la proposition</th>
+                        <th>Description de la proposition</th>
+                        <th>Nombre de voix</th>
                     </tr>
                 </thead>
                 <tbody>
                     {proposalArray.map((propo, index) => (
                         <tr key={index}>
+                            <td>{index}</td>
                             <td>{propo[0]}</td>
                             <td>{propo[1].toNumber()}</td>
                         </tr>
@@ -51,7 +53,6 @@ export default function Propositions({ set }) {
 
                 </tbody>
             </table>
-            <hr />
         </div>
     )
 

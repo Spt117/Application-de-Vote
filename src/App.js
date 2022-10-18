@@ -18,18 +18,25 @@ function App() {
 
   return (
     <div className="App">
-      <div className='parent'>
+      <div className='parent' id='one'>
         <div>
-          <Init setSet={setSet} setGet={setGet} setAddress={setAddress} setId={setId} setOwner={setOwner} owner={owner} setContract={setContract} setStatus={setStatus} get={get} />
           <Compte addr={addr} id={id} owner={owner} set={set} get={get} setOwner={setOwner} statut={statut} />
           <Owner addr={addr} id={id} owner={owner} set={set} statut={statut} get={get} />
         </div>
-        <Dapp get={get} set={set} owner={owner} setStatus={setStatus} statut={statut} />
+        <div>
+          <h6>Addresse du contrat :</h6>
+          <p>{contract}</p>
+          <p>Propriétaire du contrat : {owner}</p>
+        </div>
       </div>
-        <Propositions set={set}/>
-      <h6>Addresse du contrat :</h6>
-      <p>{contract}</p>
-      <p>Propriétaire du contrat : {owner}</p>
+      <div className='parent' id='two'>
+        <div>
+          <Init setSet={setSet} setGet={setGet} setAddress={setAddress} setId={setId} setOwner={setOwner} owner={owner} setContract={setContract} setStatus={setStatus} get={get} />
+        </div>
+        <Dapp get={get} set={set} owner={owner} setStatus={setStatus} statut={statut} />
+        <Propositions set={set} />
+      </div>
+
     </div>
   );
 }

@@ -58,21 +58,16 @@ export default function Compte({ addr, id, owner, set, get, setOwner, statut }) 
     if (addr)
         return (
             <div>
-                <h6>Réseau :</h6>
-                <p>{network(id)}</p>
-                <h6>Addresse de connexion :</h6>
-                <p>{truncateAddr(addr)}</p>
-                <p></p>
-                {(owner !== addr) && <div>
+                <p><strong>Réseau : </strong>{network(id)}</p>
+                <p><strong>Addresse de connexion : </strong>{truncateAddr(addr)}</p>
+                {(owner !== addr) && <div id="getVote">
                     <h6>Tester le système de vote :</h6>
-                    <p>Vous pouvez récupérer la propriété du contrat pour l'essayer ! <br></br> Rentrez votre addresse ci dessous :</p>
+                    <p>Vous pouvez récupérer la propriété du contrat pour l'essayer ! <br/> Rentrez votre addresse ci dessous :</p>
                     <input onChange={(e) => setOwnerShip(e.target.value)} placeholder=" Votre addresse"></input>
                     <button onClick={getOwnership}>
                         OK {loader && <Spinner animation="border" role="status" size="sm" />}
                     </button>
                 </div>}
-                
-
             </div>
         )
 }

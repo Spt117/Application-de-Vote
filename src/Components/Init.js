@@ -50,10 +50,10 @@ export default function Init({ setSet, setGet, setAddress, setId, setOwner, setC
     try {
       let address
       if (id === 5) {
-        address = "0xc7A3E1c63eA376529Ce9F3A22E7bCec473E0e083"
+        address = "0x79944efE7B1aab45ee259d877822C8De3dbBc113"
       }
       else if (id === 11155111) {
-        address = "0xaeEf43Bd5D9dc45Dd468a21E84c40443748c6dA7"
+        address = "0xc687C190679742Fd42979066ca187d2F4b0Bca1A"
       }
       const getContract = new ethers.Contract(address, Vote.abi, provider)
       const signer = provider.getSigner()
