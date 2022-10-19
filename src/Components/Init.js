@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Vote from '../../src/artifacts/contracts/Vote.sol/Vote.json';
 import Spinner from 'react-bootstrap/Spinner';
 
-export default function Init({ setSet, setGet, setAddress, setId, setOwner, setContract, setStatus, get, owner }) {
+export default function Init({ setBlockTime, setVoter, set, addr, setSet, setGet, setAddress, setId, setOwner, setContract, setStatus, get, owner }) {
   const [bool, setBool] = useState();
   const [loader, setLoader] = useState();
 
@@ -17,12 +17,13 @@ export default function Init({ setSet, setGet, setAddress, setId, setOwner, setC
   }, [bool]);
 
   useEffect(() => {
-    if(owner) {
-        getStatut()
-        eventStatut()
+    if (addr) {
+      getStatut()
+      isVoter()
+      getBlockTime()
     }
     // eslint-disable-next-line
-}, [eventStatut])
+  }, [addr])
 
   //détecter les changements de réseau et MAJ des constantes
   function network() {
@@ -50,10 +51,10 @@ export default function Init({ setSet, setGet, setAddress, setId, setOwner, setC
     try {
       let address
       if (id === 5) {
-        address = "0x79944efE7B1aab45ee259d877822C8De3dbBc113"
+        address = "0xEF73Cf7Eb73f14c84d4dB05c5Da93F39d2E80720"
       }
       else if (id === 11155111) {
-        address = "0xc687C190679742Fd42979066ca187d2F4b0Bca1A"
+        address = "0x0a2F11a4BF4aa8A355765454928f8d54f1C74a34"
       }
       const getContract = new ethers.Contract(address, Vote.abi, provider)
       const signer = provider.getSigner()
@@ -109,13 +110,29 @@ export default function Init({ setSet, setGet, setAddress, setId, setOwner, setC
   async function getStatut() {
     const statut = await get.workflowStatus()
     setStatus(statut)
+    eventStatut()
   }
 
   // mise à jours du statut
   function eventStatut() {
     get.on("WorkflowStatusChange", (newStatus) => {
-      setStatus(newStatus)
+      getStatut()
     })
+  }
+
+  async function isVoter() {
+    try {
+      const getVoter = await set.getVoter(addr)
+      setVoter(getVoter[0])
+    }
+    catch {
+      setVoter(false)
+    }
+  }
+
+  async function getBlockTime() {
+    const block = await set.blockEvent()
+    setBlockTime(block.toNumber())
   }
 
   return (

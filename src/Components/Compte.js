@@ -11,7 +11,7 @@ export default function Compte({ addr, id, owner, set, get, setOwner, statut }) 
             eventOwner()
         }
         // eslint-disable-next-line
-    }, [eventOwner])
+    }, [owner])
 
     //formater l'adresse de connexion à afficher
     function truncateAddr(address) {

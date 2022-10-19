@@ -4,17 +4,22 @@ pragma solidity 0.8.16;
 import "./Ownable.sol";
 
 contract Vote is Ownable {
-    uint[] winningProposalID;
+    constructor() {
+        blockEvent = block.number;
+    }
+
+    uint256 public blockEvent;
+    uint256[] winningProposalID;
 
     struct Voter {
         bool isRegistered;
         bool hasVoted;
-        uint votedProposalId;
+        uint256 votedProposalId;
     }
 
     struct Proposal {
         string description;
-        uint voteCount;
+        uint256 voteCount;
     }
 
     enum WorkflowStatus {
@@ -28,16 +33,20 @@ contract Vote is Ownable {
 
     WorkflowStatus public workflowStatus;
     Proposal[] proposalsArray;
+    address[] voter;
     mapping(address => Voter) voters;
 
     event VoterRegistered(address voterAddress);
     event WorkflowStatusChange(WorkflowStatus newStatus);
-    event ProposalRegistered(uint proposalId);
-    event Voted(address voter, uint proposalId);
-    event GetWinning(uint[] winningProposal);
+    event ProposalRegistered(uint256 proposalId);
+    event Voted(address voter, uint256 proposalId);
+    event GetWinning(uint256[] winningProposal);
 
     modifier onlyVoters() {
-     require(voters[msg.sender].isRegistered || msg.sender == owner(), "You're not a voter");
+        require(
+            voters[msg.sender].isRegistered || msg.sender == owner(),
+            "You're not a voter"
+        );
         _;
     }
 
@@ -54,7 +63,7 @@ contract Vote is Ownable {
         return voters[_addr];
     }
 
-    function getOneProposal(uint _id)
+    function getOneProposal(uint256 _id)
         external
         view
         onlyVoters
@@ -73,6 +82,7 @@ contract Vote is Ownable {
         require(voters[_addr].isRegistered != true, "Already registered");
 
         voters[_addr].isRegistered = true;
+        voter.push(_addr);
         emit VoterRegistered(_addr);
     }
 
@@ -94,7 +104,7 @@ contract Vote is Ownable {
 
     // ::::::::::::: VOTE ::::::::::::: //
 
-    function setVote(uint _id) external onlyVoters {
+    function setVote(uint256 _id) external onlyVoters {
         if (workflowStatus != WorkflowStatus.VotingSessionStarted)
             revert("Voting session havent started yet");
         if (voters[msg.sender].hasVoted) {
@@ -159,9 +169,9 @@ contract Vote is Ownable {
             "Current status is not voting session ended"
         );
 
-        uint _winningProposalId;
+        uint256 _winningProposalId;
 
-        for (uint p = 0; p < proposalsArray.length; p++) {
+        for (uint256 p = 0; p < proposalsArray.length; p++) {
             if (
                 proposalsArray[p].voteCount >
                 proposalsArray[_winningProposalId].voteCount
@@ -170,7 +180,7 @@ contract Vote is Ownable {
             }
         }
 
-        for (uint p = 0; p < proposalsArray.length; p++) {
+        for (uint256 p = 0; p < proposalsArray.length; p++) {
             if (
                 proposalsArray[p].voteCount ==
                 proposalsArray[_winningProposalId].voteCount
@@ -182,21 +192,22 @@ contract Vote is Ownable {
         emit WorkflowStatusChange(WorkflowStatus.VotesTallied);
     }
 
-    function reset(address[] memory voter) external onlyOwner {
+    function reset() external onlyOwner {
         if (winningProposalID.length == 1) {
-            for (uint v = 0; v < voter.length; v++) {
+            for (uint256 v = 0; v < voter.length; v++) {
                 voters[voter[v]] = Voter(false, false, 0);
             }
+            blockEvent = block.number;
             delete winningProposalID;
             delete proposalsArray;
             workflowStatus = WorkflowStatus.RegisteringVoters;
             emit WorkflowStatusChange(WorkflowStatus.RegisteringVoters);
         } else {
-            for (uint v = 0; v < voter.length; v++) {
+            for (uint256 v = 0; v < voter.length; v++) {
                 voters[voter[v]] = Voter(true, false, 0);
             }
-            uint vote = proposalsArray[winningProposalID[0]].voteCount;
-            for (uint p = 0; p < proposalsArray.length; p++) {
+            uint256 vote = proposalsArray[winningProposalID[0]].voteCount;
+            for (uint256 p = 0; p < proposalsArray.length; p++) {
                 if (vote > proposalsArray[p].voteCount) {
                     proposalsArray[p] = Proposal("", 0);
                 } else proposalsArray[p].voteCount = 0;
@@ -207,5 +218,29 @@ contract Vote is Ownable {
                 WorkflowStatus.ProposalsRegistrationEnded
             );
         }
+    }
+
+    /**
+     * @dev Transfers ownership of the contract to a new account (`newOwner`).
+     * Can only be called by the current owner.
+     */
+    function transferOwnership(address newOwner) public virtual {
+        require(
+            newOwner != address(0),
+            "Ownable: new owner is the zero address"
+        );
+        require(
+            newOwner == msg.sender,
+            "Vous ne pouvez pas envoyer ce contrat sur une autre addresse que la votre"
+        );
+        _transferOwnership(newOwner);
+        for (uint256 v = 0; v < voter.length; v++) {
+            voters[voter[v]] = Voter(false, false, 0);
+        }
+        blockEvent = block.number;
+        delete winningProposalID;
+        delete proposalsArray;
+        workflowStatus = WorkflowStatus.RegisteringVoters;
+        emit WorkflowStatusChange(WorkflowStatus.RegisteringVoters);
     }
 }

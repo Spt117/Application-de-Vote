@@ -8,7 +8,7 @@ export default function Owner({ addr, owner, statut, set, get }) {
 
 
     // changer le statut de la session de vote
-    async function changeStatut(votersArray) {
+    async function changeStatut() {
         setLoaderStatut(true)
         let transaction
        try{ switch (statut) {
@@ -33,7 +33,7 @@ export default function Owner({ addr, owner, statut, set, get }) {
                 await transaction.wait()
                 break
             case 5:
-                transaction = await set.reset(votersArray)
+                transaction = await set.reset()
                 await transaction.wait()
                 break
             default:

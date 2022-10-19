@@ -1,13 +1,19 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Spinner from "react-bootstrap/esm/Spinner"
 
-export default function Dapp({ get, set, owner, statut }) {
+export default function Dapp({ owner, set, addr, statut, voter }) {
     const statuts = ["Enregistrement des électeurs", "Enregistrement des propositions", "Enregistrement des propositions terminé", "Vote en cours", "Vote terminé", "Résultat du vote"]
     const [loader, setLoader] = useState()
     const [loaderVote, setLoaderVote] = useState()
     const [proposition, setProposition] = useState()
     const [vote, setVote] = useState()
+    const [currentStatut, setCurrentStatut] = useState()
 
+    useEffect(() => {
+        if(statut!==undefined) {
+        setCurrentStatut(statuts[statut])}
+        // eslint-disable-next-line
+    },[statut])
 
     async function ajouterProposition() {
         setLoader(true)
@@ -39,19 +45,22 @@ export default function Dapp({ get, set, owner, statut }) {
 
     return (
         <div>
-            <h4>Statut de la session de vote</h4>
-            <p>{statuts[statut]}</p>
-            {statut === 1 && <div>
-            <hr/>
-                <h5>Vous pouvez enregistrer votre proposition :</h5>
-                <input placeholder="Votre proposition" onChange={(e) => setProposition(e.target.value)} />
-                <button onClick={ajouterProposition}>Enregistrer {loader && <Spinner animation="border" role="status" size="sm" />}</button>
-            </div>}
-            {statut === 3 && <div>
-                <h5>Vous pouvez voter !</h5>
-                <input placeholder="Numéro de la proposition" onChange={(e) => setVote(e.target.value)}/>
-                <button onClick={voted}>Voter {loaderVote && <Spinner />}</button>
+            {(voter || (addr === owner))&& <div>
+                <h4>Statut de la session de vote</h4>
+                <p>{currentStatut}</p>
+                {statut === 1 && <div>
+                    <hr />
+                    <h5>Vous pouvez enregistrer votre proposition :</h5>
+                    <input placeholder="Votre proposition" onChange={(e) => setProposition(e.target.value)} />
+                    <button onClick={ajouterProposition}>Enregistrer {loader && <Spinner animation="border" role="status" size="sm" />}</button>
                 </div>}
+                {statut === 3 && <div>
+                    <h5>Vous pouvez voter !</h5>
+                    <input placeholder="Numéro de la proposition" onChange={(e) => setVote(e.target.value)} />
+                    <button onClick={voted}>Voter {loaderVote && <Spinner />}</button>
+                </div>}
+            </div>}
+            {!voter && <div>Vous n'êtes pas enregistré pour cette session de vote !</div>}
         </div>
     )
 }
