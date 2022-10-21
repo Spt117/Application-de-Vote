@@ -9,9 +9,8 @@ export default function Propositions({ set, voter, blockTime }) {
             console.log(blockTime.toString())
             récupérerPropositions()
     }
-
         // eslint-disable-next-line
-    }, [blockTime])
+    }, [])
 
     async function récupérerPropositions() {
         let proposals = [];
