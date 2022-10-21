@@ -4,11 +4,11 @@ export default function Propositions({ set, voter, blockTime }) {
     const [proposalArray, setProposalArray] = useState()
 
     useEffect(() => {
-        if (voter === true)
-        {
+        if (voter === true) {
             console.log(blockTime.toString())
             récupérerPropositions()
-    }
+        }
+
         // eslint-disable-next-line
     }, [])
 
@@ -45,6 +45,7 @@ export default function Propositions({ set, voter, blockTime }) {
             <div className="parentTableau">
                 <table id="tableau">
                     <thead>
+                    {/* <caption>Tableau des propositions</caption> */}
                         <tr>
                             <th>Numéro de la proposition</th>
                             <th>Description de la proposition</th>
