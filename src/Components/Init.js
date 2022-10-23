@@ -12,6 +12,7 @@ export default function Init({ setBlockTime, setVoter, set, addr, setSet, setGet
       init()
       isConnected()
       network()
+      account()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bool]);
@@ -36,8 +37,18 @@ export default function Init({ setBlockTime, setVoter, set, addr, setSet, setGet
       if (oldNetwork) {
         init()
         network()
+        account()
       }
     });
+  }
+
+  //détecter les changements de comptes metamask
+  function account() {
+    window.ethereum.on('accountsChanged', (accounts) => {
+      init()
+      network()
+      account()
+    })
   }
 
   //initialiser les constantes en fonction du réseau
