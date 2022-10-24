@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function Propositions({ addr, set, voter, blockTime, id }) {
+export default function Propositions({ contract, set, voter, blockTime }) {
     const [proposalArray, setProposalArray] = useState()
 
     useEffect(() => {
@@ -8,11 +8,11 @@ export default function Propositions({ addr, set, voter, blockTime, id }) {
             récupérerPropositions()
         }
         // eslint-disable-next-line
-    }, [id, voter])
+    }, [contract, voter])
 
     async function récupérerPropositions() {
         let proposals = [];
-        const event = await set.queryFilter("ProposalRegistered", blockTime, "latest")
+        const event = await set.queryFilter("ProposalRegistered", blockTime, "latest")  
         try {
             for (let i = 0; i < event.length; i++) {
                 const propositions = await set.getOneProposal(i)

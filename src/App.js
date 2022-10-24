@@ -37,7 +37,7 @@ function App() {
         </div>
         <Dapp id={id} voter={voter} get={get} set={set} owner={owner} setStatus={setStatus} statut={statut} addr={addr} />
       </div>
-        <Propositions id={id} set={set} voter={voter} blockTime={blockTime} addr={addr}/>
+        <Propositions set={set} voter={voter} blockTime={blockTime} addr={addr} contract={contract}/>
     </div>
   );
 }
