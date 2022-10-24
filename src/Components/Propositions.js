@@ -6,7 +6,6 @@ export default function Propositions({ addr, set, voter, blockTime, id }) {
     useEffect(() => {
         if (voter === true) {
             récupérerPropositions()
-            console.log(15461)
         }
         // eslint-disable-next-line
     }, [id, voter])

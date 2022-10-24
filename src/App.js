@@ -31,14 +31,13 @@ function App() {
           <p>Propriétaire du contrat : {owner}</p>
         </div>
       </div>
-      <div className='parent' id='two'>
+      <div>
         <div>
           <Init contract={contract} id={id} setVoter={setVoter} set={set} addr={addr} setSet={setSet} setGet={setGet} setAddress={setAddress} setId={setId} setOwner={setOwner} owner={owner} setContract={setContract} setStatus={setStatus} get={get} setBlockTime={setBlockTime}/>
         </div>
         <Dapp id={id} voter={voter} get={get} set={set} owner={owner} setStatus={setStatus} statut={statut} addr={addr} />
-        <Propositions id={id} set={set} voter={voter} blockTime={blockTime} addr={addr}/>
       </div>
-
+        <Propositions id={id} set={set} voter={voter} blockTime={blockTime} addr={addr}/>
     </div>
   );
 }
