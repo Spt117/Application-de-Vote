@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Vote from '../../src/artifacts/contracts/Vote.sol/Vote.json';
 import Spinner from 'react-bootstrap/Spinner';
 
-export default function Init({ setBlockTime, setVoter, set, addr, setSet, setGet, setAddress, setId, setOwner, setContract, setStatus, get, owner }) {
+export default function Init({ contract, setBlockTime, setVoter, set, addr, setSet, setGet, setAddress, setId, setOwner, setContract, setStatus, get, owner }) {
   const [bool, setBool] = useState();
   const [loader, setLoader] = useState();
 
@@ -24,7 +24,7 @@ export default function Init({ setBlockTime, setVoter, set, addr, setSet, setGet
       getBlockTime()
     }
     // eslint-disable-next-line
-  }, [addr])
+  }, [addr, contract])
 
   //détecter les changements de réseau et MAJ des constantes
   function network() {
@@ -36,8 +36,6 @@ export default function Init({ setBlockTime, setVoter, set, addr, setSet, setGet
       // oldNetwork exists, it represents a changing network
       if (oldNetwork) {
         init()
-        network()
-        account()
       }
     });
   }

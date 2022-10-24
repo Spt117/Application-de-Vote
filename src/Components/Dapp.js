@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import Spinner from "react-bootstrap/esm/Spinner"
 
-export default function Dapp({ owner, set, addr, statut, voter }) {
+export default function Dapp({ id, owner, set, addr, statut, voter }) {
     const statuts = ["Enregistrement des électeurs", "Enregistrement des propositions", "Enregistrement des propositions terminé", "Vote en cours", "Vote terminé", "Résultat du vote"]
     const [loader, setLoader] = useState()
     const [loaderVote, setLoaderVote] = useState()
@@ -13,7 +13,7 @@ export default function Dapp({ owner, set, addr, statut, voter }) {
         if(statut!==undefined) {
         setCurrentStatut(statuts[statut])}
         // eslint-disable-next-line
-    },[statut])
+    },[statut, addr, voter, id])
 
     async function ajouterProposition() {
         setLoader(true)

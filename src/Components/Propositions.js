@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 
-export default function Propositions({ set, voter, blockTime }) {
+export default function Propositions({ addr, set, voter, blockTime, id }) {
     const [proposalArray, setProposalArray] = useState()
 
     useEffect(() => {
         if (voter === true) {
-            console.log(blockTime.toString())
             récupérerPropositions()
         }
-
         // eslint-disable-next-line
-    }, [blockTime])
+    }, [blockTime, id, voter])
 
     async function récupérerPropositions() {
         let proposals = [];
@@ -40,7 +38,8 @@ export default function Propositions({ set, voter, blockTime }) {
     }
 
     // eslint-disable-next-line
-    if (proposalArray)
+    if (proposalArray && voter === true)
+    if (proposalArray.length>0)
         return (
             <div className="parentTableau">
                 <table id="tableau">
