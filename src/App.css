@@ -27,6 +27,12 @@
   width: 125%;
 }
 
+#owner {
+  background-color: antiquewhite;
+  padding: 1%;
+  width: 125%;
+}
+
 td, tr, th, caption {
   border: 1px solid black !important;
   padding: 0.1%;

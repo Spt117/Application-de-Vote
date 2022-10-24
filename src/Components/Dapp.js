@@ -8,6 +8,9 @@ export default function Dapp({ id, owner, set, addr, statut, voter }) {
     const [proposition, setProposition] = useState()
     const [vote, setVote] = useState()
     const [currentStatut, setCurrentStatut] = useState()
+    const [loaderRegister, setLoaderRegister] = useState()
+    const [addrRegister, setAddrRegister] = useState()
+
 
     useEffect(() => {
         if (statut !== undefined) {
@@ -15,6 +18,25 @@ export default function Dapp({ id, owner, set, addr, statut, voter }) {
         }
         // eslint-disable-next-line
     }, [statut, addr, voter, id])
+
+    // enregister les électeurs
+    async function registerVoter() {
+        setLoaderRegister(true)
+        try {
+            const register = await set.getVoter(addrRegister)
+            if (!register[0]) {
+                const transaction = await set.addVoter(addrRegister)
+                await transaction.wait()
+            }
+            else { alert("Cette adresse est déjà enregistrée !") }
+        }
+        catch {
+            alert("L'enregistrement de cette adresse a échoué, vérifiez le format de l'adresse !")
+        }
+        finally {
+            setLoaderRegister(false)
+        }
+    }
 
     async function ajouterProposition() {
         setLoader(true)
@@ -45,12 +67,18 @@ export default function Dapp({ id, owner, set, addr, statut, voter }) {
     }
 
     return (
-        <div >
+        <div className='parent' id='two'>
+            <div>
+                <h4>Statut de la session de vote</h4>
+                <p>{currentStatut}</p>
+            </div>
             {(voter || (addr === owner)) &&
-                <div className='parent' id='two'>
-                    <div>
-                        <h4>Statut de la session de vote</h4>
-                        <p>{currentStatut}</p></div>
+                <div >
+                    {statut === 0 && owner === addr && <div>
+                        <h6>Vous pouvez enregistrer les électeurs :</h6>
+                        <input placeholder="Adresse" onChange={(e) => setAddrRegister(e.target.value)}></input>
+                        <button onClick={registerVoter}>Enregistrer {loaderRegister && <Spinner animation="border" role="status" size="sm" />}</button>
+                    </div>}
                     {statut === 1 && <div>
                         <div>
                             <h5>Vous pouvez enregistrer votre proposition :</h5>

@@ -22,7 +22,7 @@ function App() {
     <div className="App">
       <div className='parent' id='one'>
         <div>
-          <Compte addr={addr} id={id} owner={owner} set={set} get={get} setOwner={setOwner} statut={statut} />
+          <Compte addr={addr} id={id} owner={owner} set={set} get={get} setOwner={setOwner} statut={statut} voter={voter}/>
           <Owner addr={addr} id={id} owner={owner} set={set} statut={statut} get={get} />
         </div>
         <div>

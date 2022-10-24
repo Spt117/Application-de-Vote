@@ -5,10 +5,11 @@ export default function Propositions({ contract, set, voter, blockTime }) {
 
     useEffect(() => {
         if (voter === true) {
+            // console.log(blockTime)
             récupérerPropositions()
         }
         // eslint-disable-next-line
-    }, [contract, voter])
+    }, [contract, voter,blockTime])
 
     async function récupérerPropositions() {
         let proposals = [];
