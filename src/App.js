@@ -6,6 +6,7 @@ import Dapp from './Components/Dapp';
 import Compte from './Components/Compte';
 import Owner from './Components/Owner';
 import Propositions from './Components/Propositions';
+import Statuts from './Components/Statuts';
 
 function App() {
   const [owner, setOwner] = useState()
@@ -38,6 +39,7 @@ function App() {
         <Dapp id={id} voter={voter} get={get} set={set} owner={owner} setStatus={setStatus} statut={statut} addr={addr} />
       </div>
         <Propositions set={set} voter={voter} blockTime={blockTime} addr={addr} contract={contract}/>
+        <Statuts statut={statut}></Statuts>
     </div>
   );
 }
