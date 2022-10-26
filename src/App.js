@@ -18,6 +18,14 @@ function App() {
   const [voter, setVoter] = useState()
   const [blockTime, setBlockTime] = useState()
 
+  if(!window.ethereum)
+  return(
+    <div id='walletmanquant'>
+      <h2>Impossible de trouver votre walet !</h2>
+      <p>Metamask n'est pas détecter sur votre navigateur, <a href='https://metamask.io/'>veuillez installer l'extension !</a></p>
+    </div>
+  )
+  else
   return (
     <div className="App">
       <div className='parent' id='one'>

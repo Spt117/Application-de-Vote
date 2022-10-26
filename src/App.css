@@ -52,7 +52,7 @@ caption {
 .statuts p{
   line-height: 2em;
   /* width: 15%; */
-  height: 3em;
+  height: 4em;
   /* margin-right: auto; */
   margin-top: 4%;
   border: 0.2em solid;
@@ -110,4 +110,9 @@ body {
 
 .enregistrement{
   color: whitesmoke;
+}
+
+#walletmanquant {
+  text-align: center;
+  margin-top: 5%;
 }

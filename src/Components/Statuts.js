@@ -13,7 +13,10 @@ export default function Statuts({ statut }) {
     }, [statut])
 
     function set() {
-        const thisClass = [{ thestatut: 0, idClass: nextStatut }, { thestatut: 1, idClass: nextStatut }, { thestatut: 2, idClass: nextStatut }, { thestatut: 3, idClass: nextStatut }, { thestatut: 4, idClass: nextStatut }, { thestatut: 5, idClass: nextStatut }]
+        const thisClass = [{ thestatut: 0, idClass: nextStatut }, { thestatut: 1, idClass: nextStatut },
+        { thestatut: 2, idClass: nextStatut }, { thestatut: 3, idClass: nextStatut },
+        { thestatut: 4, idClass: nextStatut }, { thestatut: 5, idClass: nextStatut }]
+        
         for (let j = 0; j < 6; j++) {
             if (statut === thisClass[j].thestatut)
                 thisClass[j].idClass = currentStatut
@@ -22,6 +25,7 @@ export default function Statuts({ statut }) {
             else if (statut > thisClass[j].thestatut)
                 thisClass[j].idClass = oldStatut
         }
+        
         setClass(thisClass)
     }
 
