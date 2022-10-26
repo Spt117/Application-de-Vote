@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Spinner from 'react-bootstrap/Spinner';
 
-export default function Compte({ addr, id, owner, set, get, setOwner, voter }) {
+export default function Compte({ addr, id, owner, set, get, setOwner, voter, contract }) {
     const [loader, setLoader] = useState()
     const [ownerShip, setOwnerShip] = useState()
     const truncate = /^(0x[a-zA-Z0-9]{4})[a-zA-Z0-9]+([a-zA-Z0-9]{4})$/
@@ -57,19 +57,26 @@ export default function Compte({ addr, id, owner, set, get, setOwner, voter }) {
 
     if (addr)
         return (
-            <div>
-                <p><strong>Réseau : </strong>{network(id)}</p>
-                <p><strong>Addresse de connexion : </strong>{truncateAddr(addr)}</p>
-                {voter && <h6>Vous êtes enregistré pour cette session de vote !</h6>}
-                {!voter && <h6>Vous n'êtes pas enregistré pour cette session de vote !</h6>}
-                {(owner !== addr) && <div id="getVote">
-                    <h6>Tester le système de vote :</h6>
-                    <p>Vous pouvez récupérer la propriété du contrat pour l'essayer ! <br /> Rentrez votre addresse ci dessous :</p>
-                    <input onChange={(e) => setOwnerShip(e.target.value)} placeholder=" Votre addresse"></input>
-                    <button onClick={getOwnership}>
-                        OK {loader && <Spinner animation="border" role="status" size="sm" />}
-                    </button>
-                </div>}
+            <div className="parent">
+                <div className="child" id="cone">
+                    <p><strong>Réseau : </strong>{network(id)}</p>
+                    <p><strong>Addresse de connexion : </strong>{truncateAddr(addr)}</p>
+                    <p><strong>Contrat : </strong>{contract}</p>
+                    {voter && <h6 className="enregistrement">Vous êtes enregistré pour cette session de vote !</h6>}
+                    {!voter && <h6 className="enregistrement">Vous n'êtes pas enregistré pour cette session de vote !</h6>}
+                </div>
+                <div id="cctwo">
+                    <div className="child" id="ctwo">
+                        {(owner !== addr) && <div>
+                            <h6>Tester le système de vote :</h6>
+                            <p>Vous pouvez récupérer la propriété du contrat pour l'essayer ! <br /> Rentrez votre addresse ci dessous :</p>
+                            <input onChange={(e) => setOwnerShip(e.target.value)} placeholder=" Votre addresse"></input>
+                            <button onClick={getOwnership}>
+                                OK {loader && <Spinner animation="border" role="status" size="sm" />}
+                            </button>
+                        </div>}
+                    </div>
+                </div>
             </div>
         )
 }

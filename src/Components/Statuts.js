@@ -13,6 +13,7 @@ export default function Statuts({ statut }) {
 
     useEffect(() => {
         set()
+        // eslint-disable-next-line 
     }, [statut])
 
     function set() {
@@ -25,7 +26,7 @@ export default function Statuts({ statut }) {
             setClassName5(nextStatut)
         }
 
-        else if (statut === 1){
+        else if (statut === 1) {
             setClassName0(oldStatut)
             setClassName1(currentStatut)
             setClassName2(nextStatut)
@@ -34,7 +35,7 @@ export default function Statuts({ statut }) {
             setClassName5(nextStatut)
         }
 
-        else if (statut === 2){
+        else if (statut === 2) {
             setClassName0(oldStatut)
             setClassName1(oldStatut)
             setClassName2(currentStatut)
@@ -43,7 +44,7 @@ export default function Statuts({ statut }) {
             setClassName5(nextStatut)
         }
 
-        else if (statut === 3){
+        else if (statut === 3) {
             setClassName0(oldStatut)
             setClassName1(oldStatut)
             setClassName2(oldStatut)
@@ -52,7 +53,7 @@ export default function Statuts({ statut }) {
             setClassName5(nextStatut)
         }
 
-        else if (statut === 4){
+        else if (statut === 4) {
             setClassName0(oldStatut)
             setClassName1(oldStatut)
             setClassName2(oldStatut)
@@ -60,7 +61,7 @@ export default function Statuts({ statut }) {
             setClassName4(currentStatut)
             setClassName5(nextStatut)
         }
-        else if (statut === 5){
+        else if (statut === 5) {
             setClassName0(oldStatut)
             setClassName1(oldStatut)
             setClassName2(oldStatut)
@@ -70,7 +71,7 @@ export default function Statuts({ statut }) {
         }
     }
 
-// if(statut)
+    // if(statut)
     return (
         <div className="statuts">
             <h3>Statut de la session de vote</h3>

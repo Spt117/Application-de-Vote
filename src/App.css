@@ -2,29 +2,14 @@
   text-align: center;
 }
 
-
-.parent {
-  padding: 0.5%;
-  background-color: aliceblue;
-  display: flex;
-  justify-content: space-around;
-}
-
 #tableau {
   margin-left: auto;
   margin-right: auto;
 }
 
 #one {
-  background-color: whitesmoke;
+  /* background-color: whitesmoke; */
   padding-bottom: 1%;
-}
-
-
-#getVote {
-  background-color: antiquewhite;
-  padding: 1%;
-  width: 125%;
 }
 
 #owner {
@@ -62,14 +47,68 @@ caption {
 .oldStatut {
   background-color: #ffffff;
   color: black;
+  text-decoration:line-through;
 }
 
-.statuts p {
+.statuts p{
   line-height: 2em;
-  width: 25%;
-  /* height: 3em; */
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 0.3%;
-  border: 0.3em inset black;
+  /* width: 15%; */
+  height: 3em;
+  /* margin-right: auto; */
+  margin-top: 4%;
+  border: 0.2em solid;
+  margin-bottom: 0%;
+}
+
+body {
+  background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+}
+
+.statuts {
+  margin-top: 0%;
+  height: 100%;
+  /* width: 30%; */
+  /* border: solid 0.2em; */
+}
+
+#Dapp {
+  /* display: none; */
+  height: 10%;
+  margin-top: 5%;
+  background-color: #80D0C7;
+  /* width: 30%; */
+  border: black 0.2em solid;
+  margin-left: 20%;
+}
+
+.test {
+  display: inline-flex;
+  width: 50%;
+  margin-right: 15%;
+}
+
+.child {
+  border: solid black 0.2em;
+}
+
+.parent {
+  padding-left: 10%;
+  padding-top: 0.3%;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 3%;
+}
+
+#cone{
+  width: 55%;
+}
+
+#ctwo {
+  margin-left: 100%;
+  height: 100%;
+  width: 120%;
+}
+
+.enregistrement{
+  color: whitesmoke;
 }
