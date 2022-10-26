@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import Spinner from 'react-bootstrap/Spinner';
 
-export default function Compte({ addr, id, owner, set, get, setOwner, voter, contract }) {
+export default function Compte({ addr, id, owner, set, get, setOwner, voter, contract, statut }) {
+    const [loaderStatut, setLoaderStatut] = useState()
     const [loader, setLoader] = useState()
     const [ownerShip, setOwnerShip] = useState()
     const truncate = /^(0x[a-zA-Z0-9]{4})[a-zA-Z0-9]+([a-zA-Z0-9]{4})$/
@@ -55,6 +56,46 @@ export default function Compte({ addr, id, owner, set, get, setOwner, voter, con
         })
     }
 
+    // changer le statut de la session de vote
+    async function changeStatut() {
+        setLoaderStatut(true)
+        let transaction
+        try {
+            switch (statut) {
+                case 0:
+                    transaction = await set.startProposalsRegistering()
+                    await transaction.wait()
+                    break
+                case 1:
+                    transaction = await set.endProposalsRegistering()
+                    await transaction.wait()
+                    break
+                case 2:
+                    transaction = await set.startVotingSession()
+                    await transaction.wait()
+                    break
+                case 3:
+                    transaction = await set.endVotingSession()
+                    await transaction.wait()
+                    break
+                case 4:
+                    transaction = await set.tallyVotes()
+                    await transaction.wait()
+                    break
+                case 5:
+                    transaction = await set.reset()
+                    await transaction.wait()
+                    break
+                default:
+                    alert("Echec du changement de statut !")
+            }
+        }
+        catch {
+            console.log("La transaction a échoué")
+        }
+        finally { setLoaderStatut(false) }
+    }
+
     if (addr)
         return (
             <div className="parent">
@@ -74,6 +115,11 @@ export default function Compte({ addr, id, owner, set, get, setOwner, voter, con
                             <button onClick={getOwnership}>
                                 OK {loader && <Spinner animation="border" role="status" size="sm" />}
                             </button>
+                        </div>}
+                        {owner === addr && <div id="owner">
+                            <h3>Dashboard Administrateur</h3>
+                            <h6>Changer le statut de la session de vote :</h6>
+                            <button onClick={changeStatut}>Statut suivant {loaderStatut && <Spinner animation="border" role="status" size="sm" />}</button>
                         </div>}
                     </div>
                 </div>

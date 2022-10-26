@@ -13,9 +13,8 @@
 }
 
 #owner {
-  background-color: antiquewhite;
-  padding: 1%;
-  width: 125%;
+  padding-top: 10%;
+  /* background-color: antiquewhite; */
 }
 
 td,

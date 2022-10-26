@@ -4,7 +4,6 @@ import { useState } from "react";
 import Init from './Components/Init';
 import Dapp from './Components/Dapp';
 import Compte from './Components/Compte';
-import Owner from './Components/Owner';
 import Propositions from './Components/Propositions';
 import Statuts from './Components/Statuts';
 
@@ -23,14 +22,11 @@ function App() {
     <div className="App">
       <div className='parent' id='one'>
         <Compte contract={contract} addr={addr} id={id} owner={owner} set={set} get={get} setOwner={setOwner} statut={statut} voter={voter} />
-        <Owner addr={addr} id={id} owner={owner} set={set} statut={statut} get={get} />
       </div>
-      <div>
-        <Init contract={contract} id={id} setVoter={setVoter} set={set} addr={addr} setSet={setSet} setGet={setGet} setAddress={setAddress} setId={setId} setOwner={setOwner} owner={owner} setContract={setContract} setStatus={setStatus} get={get} setBlockTime={setBlockTime} />
-        <div className='test'>
-          <Statuts statut={statut}></Statuts>
-          <Dapp id={id} voter={voter} get={get} set={set} owner={owner} setStatus={setStatus} statut={statut} addr={addr} />
-        </div>
+      <Init contract={contract} id={id} setVoter={setVoter} set={set} addr={addr} setSet={setSet} setGet={setGet} setAddress={setAddress} setId={setId} setOwner={setOwner} owner={owner} setContract={setContract} setStatus={setStatus} get={get} setBlockTime={setBlockTime} />
+      <div className='test'>
+        <Statuts statut={statut}></Statuts>
+        <Dapp id={id} voter={voter} get={get} set={set} owner={owner} setStatus={setStatus} statut={statut} addr={addr} />
       </div>
       <Propositions set={set} voter={voter} blockTime={blockTime} addr={addr} contract={contract} />
     </div>
