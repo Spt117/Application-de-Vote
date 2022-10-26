@@ -68,10 +68,6 @@ export default function Dapp({ id, owner, set, addr, statut, voter }) {
 
     return (
         <div className='parent' id='two'>
-            <div>
-                <h4>Statut de la session de vote</h4>
-                <p>{currentStatut}</p>
-            </div>
             {(voter || (addr === owner)) &&
                 <div >
                     {statut === 0 && owner === addr && <div>
