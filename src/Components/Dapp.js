@@ -1,23 +1,13 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Spinner from "react-bootstrap/esm/Spinner"
 
 export default function Dapp({ id, owner, set, addr, statut, voter }) {
-    const statuts = ["Enregistrement des électeurs", "Enregistrement des propositions", "Enregistrement des propositions terminé", "Vote en cours", "Vote terminé", "Résultat du vote"]
     const [loader, setLoader] = useState()
     const [loaderVote, setLoaderVote] = useState()
     const [proposition, setProposition] = useState()
     const [vote, setVote] = useState()
-    const [currentStatut, setCurrentStatut] = useState()
     const [loaderRegister, setLoaderRegister] = useState()
     const [addrRegister, setAddrRegister] = useState()
-
-
-    useEffect(() => {
-        if (statut !== undefined) {
-            setCurrentStatut(statuts[statut])
-        }
-        // eslint-disable-next-line
-    }, [statut, addr, voter, id])
 
     // enregister les électeurs
     async function registerVoter() {

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Spinner from 'react-bootstrap/Spinner';
 
-export default function Owner({ addr, owner, statut, set, get }) {
+export default function Owner({ addr, owner, statut, set }) {
     const [loaderStatut, setLoaderStatut] = useState()
 
     // changer le statut de la session de vote
