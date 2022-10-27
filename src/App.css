@@ -30,7 +30,7 @@ caption {
 }
 
 .parentTableau {
-  padding: 1em;
+  padding-top: 5%;
 }
 
 .nextStatut {
@@ -50,13 +50,11 @@ caption {
 }
 
 .statuts p{
-  line-height: 2em;
-  /* width: 15%; */
-  height: 4em;
-  /* margin-right: auto; */
+height: 3em;
   margin-top: 4%;
   border: 0.2em solid;
   margin-bottom: 0%;
+  border-radius: 0.5rem;
 }
 
 body {
@@ -66,18 +64,16 @@ body {
 .statuts {
   margin-top: 0%;
   height: 100%;
-  /* width: 30%; */
-  /* border: solid 0.2em; */
 }
 
 #Dapp {
-  /* display: none; */
-  height: 10%;
-  margin-top: 5%;
   background-color: #80D0C7;
-  /* width: 30%; */
   border: black 0.2em solid;
-  margin-left: 20%;
+  margin-left: 60%;
+  margin-top: 30%;
+  width: 90%;
+  padding: 0.2em;
+  border-radius: 1rem;
 }
 
 .test {
@@ -88,6 +84,7 @@ body {
 
 .child {
   border: solid black 0.2em;
+  border-radius: 1rem;
 }
 
 .parent {
@@ -115,4 +112,15 @@ body {
 #walletmanquant {
   text-align: center;
   margin-top: 5%;
+}
+
+div button {
+padding: auto;
+margin-top: 2%;
+margin-left: 2%;
+border-radius: 0.5rem;
+}
+
+input {
+  border-radius: 0.5rem;
 }

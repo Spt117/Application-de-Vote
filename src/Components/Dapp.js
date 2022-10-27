@@ -73,7 +73,7 @@ export default function Dapp({ id, owner, set, addr, statut, voter }) {
                     {statut === 3 && <div>
                         <h5>Vous pouvez voter !</h5>
                         <input placeholder="Numéro de la proposition" onChange={(e) => setVote(e.target.value)} />
-                        <button onClick={voted}>Voter {loaderVote && <Spinner />}</button>
+                        <button onClick={voted}>Voter {loaderVote && <Spinner animation="border" role="status" size="sm"/>}</button>
                     </div>}
                 </div>
             </div>

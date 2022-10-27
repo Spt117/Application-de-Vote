@@ -34,8 +34,10 @@ function App() {
       <Init contract={contract} id={id} setVoter={setVoter} set={set} addr={addr} setSet={setSet} setGet={setGet} setAddress={setAddress} setId={setId} setOwner={setOwner} owner={owner} setContract={setContract} setStatus={setStatus} get={get} setBlockTime={setBlockTime} />
       <div className='test'>
         <Statuts statut={statut}></Statuts>
+        <div>
         <Dapp id={id} voter={voter} get={get} set={set} owner={owner} setStatus={setStatus} statut={statut} addr={addr} />
-      </div>
+        </div>
+        </div>
       <Propositions set={set} voter={voter} blockTime={blockTime} addr={addr} contract={contract} />
     </div>
   );
