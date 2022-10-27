@@ -23,9 +23,10 @@ export default function Init({ contract, setBlockTime, setVoter, set, addr, setS
       getStatut()
       isVoter()
       getBlockTime()
+      getNewVoter()
     }
     // eslint-disable-next-line
-  }, [addr, contract])
+  }, [addr, contract, owner])
 
   //détecter les changements de réseau et MAJ des constantes
   function network() {
@@ -124,6 +125,13 @@ export default function Init({ contract, setBlockTime, setVoter, set, addr, setS
   function eventStatut() {
     get.on("WorkflowStatusChange", (newStatus) => {
       getStatut()
+    })
+  }
+
+  //détection des enregistrements
+  function getNewVoter() {
+    get.on("VoterRegistered", (voterAddress) => {
+      isVoter()
     })
   }
 

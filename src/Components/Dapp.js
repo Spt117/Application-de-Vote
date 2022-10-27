@@ -45,11 +45,17 @@ export default function Dapp({ id, owner, set, addr, statut, voter }) {
     async function voted() {
         setLoaderVote(true)
         try {
-            const transaction = await set.setVote(vote)
-            await transaction.wait()
+            const register = await set.getVoter(addr)
+            if (register[1] === true) {
+                alert("Vous avez déjà voté !")
+            }
+            else {
+                const transaction = await set.setVote(vote)
+                await transaction.wait()
+            }
         }
         catch {
-            alert("Votre vote a achoué, vérifiez que votre numéro de proposition soit valable.")
+            alert("Votre vote a échoué, vérifiez que votre numéro de proposition soit valable.")
         }
         finally {
             setLoaderVote(false)
@@ -73,13 +79,13 @@ export default function Dapp({ id, owner, set, addr, statut, voter }) {
                     {statut === 3 && <div>
                         <h5>Vous pouvez voter !</h5>
                         <input placeholder="Numéro de la proposition" onChange={(e) => setVote(e.target.value)} />
-                        <button onClick={voted}>Voter {loaderVote && <Spinner animation="border" role="status" size="sm"/>}</button>
+                        <button onClick={voted}>Voter {loaderVote && <Spinner animation="border" role="status" size="sm" />}</button>
                     </div>}
                 </div>
             </div>
         )
 
-    else if(!voter && addr)
+    else if (!voter && addr)
         return (
             <div id="Dapp">
                 <div>Vous n'êtes pas enregistré pour cette session de vote !</div>
