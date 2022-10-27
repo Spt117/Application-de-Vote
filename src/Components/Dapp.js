@@ -56,7 +56,7 @@ export default function Dapp({ id, owner, set, addr, statut, voter }) {
         }
     }
 
-    if (((voter && statut !== 0) || (addr === owner)))
+    if (((voter && statut !== 0) || ((addr === owner) && addr !== undefined)))
         return (
             <div id="Dapp">
                 <div>
@@ -79,7 +79,7 @@ export default function Dapp({ id, owner, set, addr, statut, voter }) {
             </div>
         )
 
-    else if(!voter)
+    else if(!voter && addr)
         return (
             <div id="Dapp">
                 <div>Vous n'êtes pas enregistré pour cette session de vote !</div>

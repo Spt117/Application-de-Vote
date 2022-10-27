@@ -119,8 +119,25 @@ padding: auto;
 margin-top: 2%;
 margin-left: 2%;
 border-radius: 0.5rem;
+transition: background-color 1s;
+}
+
+button:hover {
+  background-color: #238ac0;
 }
 
 input {
   border-radius: 0.5rem;
+  border: grey solid;
+}
+
+header {
+  text-align: center;
+  /* background-color: #6723c0; */
+}
+
+header div {
+  margin-bottom: 1%;
+  /* background-color: #ffffff; */
+  padding: 1.5%;
 }

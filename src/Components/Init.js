@@ -9,8 +9,9 @@ export default function Init({ contract, setBlockTime, setVoter, set, addr, setS
 
   useEffect(() => {
     if (window.ethereum) {
-      init()
       isConnected()
+      if(bool)
+      init()
       network()
       account()
     }
@@ -31,9 +32,6 @@ export default function Init({ contract, setBlockTime, setVoter, set, addr, setS
     const provider = new ethers.providers.Web3Provider(window.ethereum, "any")
     //relancer init en cas de changement de réseau
     provider.on("network", (newNetwork, oldNetwork) => {
-      // When a Provider makes its initial connection, it emits a "network"
-      // event with a null oldNetwork along with the newNetwork. So, if the
-      // oldNetwork exists, it represents a changing network
       if (oldNetwork) {
         init()
       }
@@ -145,9 +143,10 @@ export default function Init({ contract, setBlockTime, setVoter, set, addr, setS
   }
 
   return (
-    <div>
+    <div id="connexion">
       {!bool && window.ethereum &&
         <div>
+          <h3>Se connecter à l'application de vote !</h3>
           <button onClick={connectDapp}>Connexion {loader && <Spinner animation="border" role="status" size="sm" />}</button>
         </div>}
 
