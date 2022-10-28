@@ -144,8 +144,7 @@ header div {
 }
 
 .message {
-  padding: 10px;
-  margin: 20px;
+  padding: 1em;
   border: green 2px solid;
   background-color: green;
   color: white;
@@ -155,9 +154,8 @@ header div {
   transform: translateX(-50%);
   text-align: center;
   border-radius: 0.5rem;
+  animation: 3s ease-in 1s infinite reverse both running slidein;
 }
-
-
 
 /* On défini l'alert a none */
 #alert {

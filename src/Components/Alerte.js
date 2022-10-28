@@ -5,6 +5,7 @@ export default function Alerte({ set }) {
     const [idAlert, setIdAlerte] = useState("alert")
 
     useEffect(() => {
+        if(set)
         eventProposition()
     })
 
