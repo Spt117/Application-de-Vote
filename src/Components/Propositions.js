@@ -4,21 +4,21 @@ export default function Propositions({ contract, set, voter, blockTime }) {
     const [proposalArray, setProposalArray] = useState()
 
     useEffect(() => {
-        if (voter === true) {
-            // console.log(blockTime)
+        if (voter === true && blockTime !== undefined) {
             récupérerPropositions()
         }
         // eslint-disable-next-line
-    }, [contract, voter,blockTime])
+    }, [contract, voter, blockTime])
 
     async function récupérerPropositions() {
         let proposals = [];
-        const event = await set.queryFilter("ProposalRegistered", blockTime, "latest")  
+        const event = await set.queryFilter("ProposalRegistered", blockTime, "latest")
         try {
-            for (let i = 0; i < event.length; i++) {
-                const propositions = await set.getOneProposal(i)
-                proposals.push(propositions)
-            }
+            if (event.length !== 0)
+                for (let i = 0; i < event.length; i++) {
+                    const propositions = await set.getOneProposal(i)
+                    proposals.push(propositions)
+                }
         }
         catch { console.log("Erreur") }
         setProposalArray(proposals)
@@ -37,33 +37,33 @@ export default function Propositions({ contract, set, voter, blockTime }) {
             récupérerPropositions()
         })
     }
-
+    
     // eslint-disable-next-line
     if (proposalArray && voter === true)
-    if (proposalArray.length>0)
-        return (
-            <div className="parentTableau">
-                <table id="tableau">
-                    <thead>
-                    {/* <caption>Tableau des propositions</caption> */}
-                        <tr>
-                            <th>Numéro de la proposition</th>
-                            <th>Description de la proposition</th>
-                            <th>Nombre de voix</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {proposalArray.map((propo, index) => (
-                            <tr key={index}>
-                                <td>{index}</td>
-                                <td>{propo[0]}</td>
-                                <td>{propo[1].toNumber()}</td>
+        if (proposalArray.length > 0)
+            return (
+                <div className="parentTableau">
+                    <table id="tableau">
+                        <thead>
+                            {/* <caption>Tableau des propositions</caption> */}
+                            <tr>
+                                <th>Numéro de la proposition</th>
+                                <th>Description de la proposition</th>
+                                <th>Nombre de voix</th>
                             </tr>
-                        ))}
+                        </thead>
+                        <tbody>
+                            {proposalArray.map((propo, index) => (
+                                <tr key={index}>
+                                    <td>{index}</td>
+                                    <td>{propo[0]}</td>
+                                    <td>{propo[1].toNumber()}</td>
+                                </tr>
+                            ))}
 
-                    </tbody>
-                </table>
-            </div>
-        )
+                        </tbody>
+                    </table>
+                </div>
+            )
 
 }

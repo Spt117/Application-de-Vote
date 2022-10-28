@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  position: relative;
 }
 
 #tableau {
@@ -46,11 +47,11 @@ caption {
 .oldStatut {
   background-color: #ffffff;
   color: black;
-  text-decoration:line-through;
+  text-decoration: line-through;
 }
 
-.statuts p{
-height: 3em;
+.statuts p {
+  height: 3em;
   margin-top: 4%;
   border: 0.2em solid;
   margin-bottom: 0%;
@@ -95,7 +96,7 @@ body {
   margin-bottom: 3%;
 }
 
-#cone{
+#cone {
   width: 55%;
 }
 
@@ -105,7 +106,7 @@ body {
   width: 120%;
 }
 
-.enregistrement{
+.enregistrement {
   color: whitesmoke;
 }
 
@@ -115,11 +116,11 @@ body {
 }
 
 div button {
-padding: auto;
-margin-top: 2%;
-margin-left: 2%;
-border-radius: 0.5rem;
-transition: background-color 1s;
+  padding: auto;
+  margin-top: 2%;
+  margin-left: 2%;
+  border-radius: 0.5rem;
+  transition: background-color 1s;
 }
 
 button:hover {
@@ -140,4 +141,29 @@ header div {
   margin-bottom: 1%;
   /* background-color: #ffffff; */
   padding: 1.5%;
+}
+
+.message {
+  padding: 10px;
+  margin: 20px;
+  border: green 2px solid;
+  background-color: green;
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  border-radius: 0.5rem;
+}
+
+
+
+/* On défini l'alert a none */
+#alert {
+  display: none;
+}
+
+#alert2 {
+  display: block;
 }
