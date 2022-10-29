@@ -25,10 +25,7 @@ export default function Alerte({ set }) {
         })
     }
     return (
-        <div id="le">
-            <div>
-                <button onClick={handleAlert}>Test</button>
-            </div>
+        <div>
             <div className="message" id={idAlert}>
                 Nouvelle proposition détectée !
             </div>

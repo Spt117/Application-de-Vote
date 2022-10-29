@@ -62,7 +62,7 @@ export default function Dapp({ id, owner, set, addr, statut, voter }) {
         }
     }
 
-    if (((statut === 0) && ((addr === owner) && addr !== undefined)) || (statut === 1 || statut === 3))
+    if (((statut === 0) && ((addr === owner) && addr !== undefined)) || ((statut === 1 || statut === 3) && voter ))
         return (
             <div id="Dapp">
                 <div>
