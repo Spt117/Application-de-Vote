@@ -99,16 +99,15 @@ export default function Compte({ addr, id, owner, set, get, setOwner, voter, con
     if (addr)
         return (
             <div className="parent">
-                <div className="child" id="cone">
+                <div className="child">
                     <p><strong>Réseau : </strong>{network(id)}</p>
                     <p><strong>Addresse de connexion : </strong>{truncateAddr(addr)}</p>
                     <p><strong>Contrat : </strong>{contract}</p>
                     {voter && <h6 className="enregistrement">Vous êtes enregistré pour cette session de vote !</h6>}
                     {!voter && <h6 className="enregistrement">Vous n'êtes pas enregistré pour cette session de vote !</h6>}
-                </div>
-                <div id="cctwo">
-                    <div className="child" id="ctwo">
-                        {(owner !== addr) && <div>
+                </div>        
+                    <div className="child">
+                        {(owner !== addr) && <div className="owner">
                             <h6>Tester le système de vote :</h6>
                             <p>Vous pouvez récupérer la propriété du contrat pour l'essayer ! <br /> Rentrez votre addresse ci dessous :</p>
                             <input onChange={(e) => setOwnerShip(e.target.value)} placeholder=" Votre addresse"></input>
@@ -116,13 +115,12 @@ export default function Compte({ addr, id, owner, set, get, setOwner, voter, con
                                 OK {loader && <Spinner animation="border" role="status" size="sm" />}
                             </button>
                         </div>}
-                        {owner === addr && <div id="owner">
-                            <h3>Dashboard Administrateur</h3>
+                        {owner === addr && <div className="owner">
+                            <h4>Dashboard Administrateur</h4>
                             <h6>Changer le statut de la session de vote :</h6>
                             <button onClick={changeStatut}>Statut suivant {loaderStatut && <Spinner animation="border" role="status" size="sm" />}</button>
                         </div>}
                     </div>
-                </div>
             </div>
         )
 }

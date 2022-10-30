@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Spinner from "react-bootstrap/esm/Spinner"
 
-export default function Dapp({ id, owner, set, addr, statut, voter }) {
+export default function Dapp({ id, owner, set, addr, statut, voter, setErreur }) {
     const [loader, setLoader] = useState()
     const [loaderVote, setLoaderVote] = useState()
     const [proposition, setProposition] = useState()
@@ -18,10 +18,10 @@ export default function Dapp({ id, owner, set, addr, statut, voter }) {
                 const transaction = await set.addVoter(addrRegister)
                 await transaction.wait()
             }
-            else { alert("Cette adresse est déjà enregistrée !") }
+            else { setErreur("Cette adresse est déjà enregistrée !") }
         }
         catch {
-            alert("L'enregistrement de cette adresse a échoué, vérifiez le format de l'adresse !")
+            setErreur("L'enregistrement de cette adresse a échoué, vérifiez le format de l'adresse !")
         }
         finally {
             setLoaderRegister(false)
@@ -35,7 +35,7 @@ export default function Dapp({ id, owner, set, addr, statut, voter }) {
             await transaction.wait()
         }
         catch {
-            alert("Echec de l'enregistrement !")
+            setErreur("Echec de l'enregistrement !")
         }
         finally {
             setLoader(false)
@@ -47,7 +47,7 @@ export default function Dapp({ id, owner, set, addr, statut, voter }) {
         try {
             const register = await set.getVoter(addr)
             if (register[1] === true) {
-                alert("Vous avez déjà voté !")
+                setErreur("Vous avez déjà voté !")
             }
             else {
                 const transaction = await set.setVote(vote)
@@ -55,7 +55,7 @@ export default function Dapp({ id, owner, set, addr, statut, voter }) {
             }
         }
         catch {
-            alert("Votre vote a échoué, vérifiez que votre numéro de proposition soit valable.")
+            setErreur("Votre vote a échoué, vérifiez que votre numéro de proposition soit valable.")
         }
         finally {
             setLoaderVote(false)
