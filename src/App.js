@@ -27,7 +27,7 @@ function App() {
         <p>Metamask n'est pas détecté sur votre navigateur, <a href='https://metamask.io/'>veuillez installer l'extension !</a></p>
       </div>}
       <div className="App">
-        <Alerte set={set}></Alerte>
+        <Alerte set={set} addr={addr} owner={owner} voter={voter}></Alerte>
         <div className='parent' id='one'>
           <Compte contract={contract} addr={addr} id={id} owner={owner} set={set} get={get} setOwner={setOwner} statut={statut} voter={voter} />
         </div>

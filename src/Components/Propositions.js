@@ -37,7 +37,7 @@ export default function Propositions({ contract, set, voter, blockTime }) {
             récupérerPropositions()
         })
     }
-    
+
     // eslint-disable-next-line
     if (proposalArray && voter === true)
         if (proposalArray.length > 0)
