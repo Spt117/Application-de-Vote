@@ -8,7 +8,6 @@ export default function Alerte({ addr, voter, owner, set }) {
 
     useEffect(() => {
         if (set && (voter || addr === owner)) {
-            console.log(12)
             eventStatut()
             eventEnregistrement()
             eventProposition()
@@ -20,7 +19,6 @@ export default function Alerte({ addr, voter, owner, set }) {
     function eventProposition() {
         set.on("ProposalRegistered", (description, voteCount) => {
             notif(Messages[2])
-            console.log(1)
         })
     }
 
@@ -44,7 +42,6 @@ export default function Alerte({ addr, voter, owner, set }) {
     function eventStatut () {
         set.on("WorkflowStatusChange", (statut) => {
             notif(Messages[3])
-            console.log(2)
         })
     }
 

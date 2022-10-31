@@ -148,6 +148,7 @@ header div {
   margin-top: 2em;
   animation-duration: 5s;
   animation-name: slidein;
+  display: none;
 }
 
 /* On défini l'alert a none */
@@ -185,6 +186,7 @@ header div {
   animation-name: anim;
   padding: 0.5em;
   border: 5px solid rgb(255, 0, 0);
+  display: none;
   border-radius: 1rem;
 }
 
