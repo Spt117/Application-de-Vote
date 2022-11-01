@@ -102,7 +102,7 @@ export default function Compte({ addr, id, owner, set, get, setOwner, voter, con
                 <div className="child">
                     <p><strong>Réseau : </strong>{network(id)}</p>
                     <p><strong>Addresse de connexion : </strong>{truncateAddr(addr)}</p>
-                    <p><strong>Contrat : </strong>{contract}</p>
+                    <p id="contrat"><strong>Contrat : </strong>{contract}</p>
                     {voter && <h6 className="enregistrement">Vous êtes enregistré pour cette session de vote !</h6>}
                     {!voter && <h6 className="enregistrement">Vous n'êtes pas enregistré pour cette session de vote !</h6>}
                 </div>        

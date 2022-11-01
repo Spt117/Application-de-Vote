@@ -192,6 +192,10 @@ contract Vote is Ownable {
         emit WorkflowStatusChange(WorkflowStatus.VotesTallied);
     }
 
+    function getResult() external view returns(uint[] memory) {
+        return winningProposalID;
+    }
+
     function reset() external onlyOwner {
         if (winningProposalID.length == 1) {
             for (uint256 v = 0; v < voter.length; v++) {

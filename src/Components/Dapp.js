@@ -65,7 +65,7 @@ export default function Dapp({ id, owner, set, addr, statut, voter, setErreur })
     if (((statut === 0) && ((addr === owner) && addr !== undefined)) || ((statut === 1 || statut === 3) && voter ))
         return (
             <div id="Dapp">
-                <div>
+                <div id="divapp">
                     {statut === 0 && owner === addr && <div>
                         <h6>Vous pouvez enregistrer les électeurs :</h6>
                         <input placeholder="Adresse" onChange={(e) => setAddrRegister(e.target.value)}></input>
@@ -76,10 +76,10 @@ export default function Dapp({ id, owner, set, addr, statut, voter, setErreur })
                         <input placeholder="Votre proposition" onChange={(e) => setProposition(e.target.value)} />
                         <button onClick={ajouterProposition}>Enregistrer {loader && <Spinner animation="border" role="status" size="sm" />}</button>
                     </div>}
-                    {statut === 3 && <div>
+                    {statut === 3 && <div id="divote">
                         <h5>Vous pouvez voter !</h5>
                         <input placeholder="Numéro de la proposition" onChange={(e) => setVote(e.target.value)} />
-                        <button onClick={voted}>Voter {loaderVote && <Spinner animation="border" role="status" size="sm" />}</button>
+                        <button id="vote" onClick={voted}>Voter {loaderVote && <Spinner animation="border" role="status" size="sm" />}</button>
                     </div>}
                 </div>
             </div>

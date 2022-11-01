@@ -33,13 +33,13 @@ export default function Alerte({ addr, voter, owner, set }) {
         })
     }
 
-    function eventVote(){
+    function eventVote() {
         set.on("Voted", (adresse, id) => {
             notif("Nouveau vote de l'adresse " + adresse + " pour la proposition numéro " + id + " !")
         })
     }
 
-    function eventStatut () {
+    function eventStatut() {
         set.on("WorkflowStatusChange", (statut) => {
             notif(Messages[3])
         })
@@ -60,8 +60,10 @@ export default function Alerte({ addr, voter, owner, set }) {
     return (
         <div>
             <div className="message" id="alert">
-                <button id="close" onClick={close} title="Fermer">X</button>
-                {message}
+                <div className="thebutton">
+                    <button className="close" onClick={close} title="Fermer">X</button>
+                </div>
+                <p id="mpadding">{message}</p>
             </div>
         </div>
     )

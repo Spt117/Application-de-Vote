@@ -59,10 +59,10 @@ export default function Init({ statut, contract, setBlockTime, setVoter, set, ad
     try {
       let address
       if (id === 5) {
-        address = "0x025825411aCBe41f0C392C751093F43EA06DdBb9"
+        address = "0x75620beeFfB66481A46AEf3a17734f7f37BacE02"
       }
       else if (id === 11155111) {
-        address = "0x8b1ddd07F7B1426cfD499FB4FB147F761DF95694"
+        address = "0x3522F5E6a744C16dd019E9Ec314AD45868dccFc6"
       }
       const getContract = new ethers.Contract(address, Vote.abi, provider)
       const signer = provider.getSigner()

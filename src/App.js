@@ -19,11 +19,19 @@ function App() {
   const [voter, setVoter] = useState()
   const [blockTime, setBlockTime] = useState()
   const [erreur, setErreur] = useState()
+  const [winner, setWinner] = useState()
+  const [wproposal, setWproposal] = useState()
 
   useEffect(() => {
-    if(erreur)
-    sendErreur()
-  },[erreur])
+    if (erreur) {
+      sendErreur()
+    }
+    if (statut === 5) {
+      getWinner()
+    }
+    else close()
+    // eslint-disable-next-line 
+  }, [statut, erreur])
 
   function sendErreur() {
     let div = document.querySelector('.Animation')
@@ -34,10 +42,33 @@ function App() {
     }, 5000)
   }
 
+  async function getWinner() {
+    const propoGagnantes = await set.getResult()
+    let id = propoGagnantes[0].toNumber()
+    const propositions = await set.getOneProposal(id)
+    setWinner(id)
+    setWproposal(propositions[0])
+    let div = document.querySelector('#finvote')
+    div.style.display = 'block';
+  }
 
+  function close() {
+    let divAlert = document.querySelector('#finvote')
+    divAlert.style.display = 'none';
+  }
   return (
     <div>
-      <div className='Animation'>{erreur}</div>
+      <div className='Animation'><p>{erreur}</p></div>
+      <div id="finvote">
+        <div className='thebutton'>
+          <button className="close" onClick={close} title="Fermer">X</button>
+        </div>
+        <h3>Résultat du vote</h3>
+        <br />
+        <div id='winner'>
+          <p>La proposition qui a remporté le vote est la proposition numéro {winner} :<br />{wproposal}</p>
+        </div>
+      </div>
       {!window.ethereum && <div id='walletmanquant'>
         <h2>Impossible de trouver votre walet !</h2>
         <p>Metamask n'est pas détecté sur votre navigateur, <a href='https://metamask.io/'>veuillez installer l'extension !</a></p>
