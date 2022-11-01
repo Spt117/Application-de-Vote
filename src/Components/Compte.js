@@ -105,22 +105,22 @@ export default function Compte({ addr, id, owner, set, get, setOwner, voter, con
                     <p id="contrat"><strong>Contrat : </strong>{contract}</p>
                     {voter && <h6 className="enregistrement">Vous êtes enregistré pour cette session de vote !</h6>}
                     {!voter && <h6 className="enregistrement">Vous n'êtes pas enregistré pour cette session de vote !</h6>}
-                </div>        
-                    <div className="child">
-                        {(owner !== addr) && <div className="owner">
-                            <h6>Tester le système de vote :</h6>
-                            <p>Vous pouvez récupérer la propriété du contrat pour l'essayer ! <br /> Rentrez votre addresse ci dessous :</p>
-                            <input onChange={(e) => setOwnerShip(e.target.value)} placeholder=" Votre addresse"></input>
-                            <button onClick={getOwnership}>
-                                OK {loader && <Spinner animation="border" role="status" size="sm" />}
-                            </button>
-                        </div>}
-                        {owner === addr && <div className="owner">
-                            <h4>Dashboard Administrateur</h4>
-                            <h6>Changer le statut de la session de vote :</h6>
-                            <button onClick={changeStatut}>Statut suivant {loaderStatut && <Spinner animation="border" role="status" size="sm" />}</button>
-                        </div>}
-                    </div>
+                </div>
+                <div className="child">
+                    {(owner !== addr) && <div className="owner">
+                        <h6>Tester le système de vote :</h6>
+                        <p>Vous pouvez récupérer la propriété du contrat pour l'essayer ! <br /> Rentrez votre addresse ci dessous :</p>
+                        <input onChange={(e) => setOwnerShip(e.target.value)} placeholder=" Votre addresse"></input>
+                        <button onClick={getOwnership}>
+                            OK {loader && <Spinner animation="border" role="status" size="sm" />}
+                        </button>
+                    </div>}
+                    {owner === addr && <div className="owner">
+                        <h4>Dashboard Administrateur</h4>
+                        <h6>Changer le statut de la session de vote :</h6>
+                        <button onClick={changeStatut}>Statut suivant {loaderStatut && <Spinner animation="border" role="status" size="sm" />}</button>
+                    </div>}
+                </div>
             </div>
         )
 }

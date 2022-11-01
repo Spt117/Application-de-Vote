@@ -79,9 +79,9 @@ function App() {
           <Compte contract={contract} addr={addr} id={id} owner={owner} set={set} get={get} setOwner={setOwner} statut={statut} voter={voter} />
         </div>
         <Init statut={statut} contract={contract} id={id} setVoter={setVoter} set={set} addr={addr} setSet={setSet} setGet={setGet} setAddress={setAddress} setId={setId} setOwner={setOwner} owner={owner} setContract={setContract} setStatus={setStatus} get={get} setBlockTime={setBlockTime} />
-        <div className='test'>
+        <div className='parent'>
           <Statuts statut={statut}></Statuts>
-          <div>
+          <div id="parentDapp">
             <Dapp setErreur={setErreur} id={id} voter={voter} get={get} set={set} owner={owner} setStatus={setStatus} statut={statut} addr={addr} />
           </div>
         </div>

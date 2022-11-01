@@ -67,12 +67,12 @@ export default function Dapp({ id, owner, set, addr, statut, voter, setErreur })
             <div id="Dapp">
                 <div id="divapp">
                     {statut === 0 && owner === addr && <div>
-                        <h6>Vous pouvez enregistrer les électeurs :</h6>
+                        <h6>Vous pouvez enregistrer les électeurs</h6>
                         <input placeholder="Adresse" onChange={(e) => setAddrRegister(e.target.value)}></input>
                         <button onClick={registerVoter}>Enregistrer {loaderRegister && <Spinner animation="border" role="status" size="sm" />}</button>
                     </div>}
                     {statut === 1 && <div>
-                        <h5>Vous pouvez enregistrer votre proposition :</h5>
+                        <h5>Vous pouvez enregistrer votre proposition</h5>
                         <input placeholder="Votre proposition" onChange={(e) => setProposition(e.target.value)} />
                         <button onClick={ajouterProposition}>Enregistrer {loader && <Spinner animation="border" role="status" size="sm" />}</button>
                     </div>}

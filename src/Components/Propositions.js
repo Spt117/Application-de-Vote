@@ -6,7 +6,6 @@ export default function Propositions({ contract, set, voter, blockTime }) {
     useEffect(() => {
         if (voter === true && blockTime !== undefined) {
             récupérerPropositions()
-            console.log(blockTime)
         }
         // eslint-disable-next-line
     }, [contract, voter, blockTime])
@@ -18,7 +17,6 @@ export default function Propositions({ contract, set, voter, blockTime }) {
             if (event.length !== 0)
                 for (let i = 0; i < event.length; i++) {
                     const propositions = await set.getOneProposal(i)
-                    console.log(propositions)
                     proposals.push(propositions)
                 }
         }
