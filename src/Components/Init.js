@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Vote from '../../src/artifacts/contracts/Vote.sol/Vote.json';
 import Spinner from 'react-bootstrap/Spinner';
 
-export default function Init({ statut, contract, setBlockTime, setVoter, set, addr, setSet, setGet, setAddress, setId, setOwner, setContract, setStatus, get, owner }) {
+export default function Init({ uncontrat, statut, contract, setBlockTime, setVoter, set, addr, setSet, setGet, setAddress, setId, setOwner, setContract, setStatus, get, owner }) {
   const [bool, setBool] = useState();
   const [loader, setLoader] = useState();
 
@@ -157,7 +157,6 @@ export default function Init({ statut, contract, setBlockTime, setVoter, set, ad
           <h3>Se connecter à l'application de vote !</h3>
           <button onClick={connectDapp}>Connexion {loader && <Spinner animation="border" role="status" size="sm" />}</button>
         </div>}
-
     </div>
   )
 }

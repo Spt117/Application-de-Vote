@@ -118,7 +118,7 @@ export default function Compte({ addr, id, owner, set, get, setOwner, voter, con
                     {owner === addr && <div className="owner">
                         <h4>Dashboard Administrateur</h4>
                         <h6>Changer le statut de la session de vote :</h6>
-                        <button onClick={changeStatut}>Statut suivant {loaderStatut && <Spinner animation="border" role="status" size="sm" />}</button>
+                        <button id="buttonmarge" onClick={changeStatut}>Statut suivant {loaderStatut && <Spinner animation="border" role="status" size="sm" />}</button>
                     </div>}
                 </div>
             </div>

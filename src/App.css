@@ -16,6 +16,7 @@ body, html {
       rgba(230, 230, 230, 0) 33.3%, rgba(241, 241, 241, 0) 33.3%, rgba(241, 241, 241, 0) 66.6%, rgba(55, 55, 55, 0) 66.6%,
       rgba(55, 55, 55, 0) 99%), linear-gradient(0deg, #2625e3, #0bbaef);
       height: 100%;
+   
 }
 
 .App {
@@ -100,6 +101,7 @@ caption {
 .parent {
   padding-top: 0.3%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   margin-bottom: 3%;
 }
@@ -258,8 +260,16 @@ a {
 	}
 }
 
-#winner{
+.winner{
 margin-bottom: 3em;
 margin-left: 3em;
 margin-right: 3em;
+}
+
+#proposgagantes {
+  list-style-type: none;
+}
+
+#buttonmarge {
+  margin-top: 10%;
 }
