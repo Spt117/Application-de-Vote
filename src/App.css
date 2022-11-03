@@ -1,275 +1,261 @@
-body, html {
-  background-image: linear-gradient(52deg, rgba(163, 163, 163, 0.09) 0%, rgba(163, 163, 163, 0.09) 33.3%,
-      rgba(100, 100, 100, 0.09) 33.3%, rgba(100, 100, 100, 0.09) 66.6%, rgba(162, 162, 162, 0.09) 66.6%,
-      rgba(162, 162, 162, 0.09) 99%), linear-gradient(258deg, rgba(193, 193, 193, 0.06) 0%, rgba(193, 193, 193, 0.06) 33.3%,
-      rgba(169, 169, 169, 0.06) 33.3%, rgba(169, 169, 169, 0.06) 66.6%, rgba(92, 92, 92, 0.06) 66.6%, rgba(92, 92, 92, 0.06) 99%),
-    linear-gradient(129deg, rgba(45, 45, 45, 0.03) 0%, rgba(45, 45, 45, 0.03) 33.3%, rgba(223, 223, 223, 0.03) 33.3%,
-      rgba(223, 223, 223, 0.03) 66.6%, rgba(173, 173, 173, 0.03) 66.6%, rgba(173, 173, 173, 0.03) 99%), linear-gradient(280deg,
-      rgba(226, 226, 226, 0.06) 0%, rgba(226, 226, 226, 0.06) 33.3%, rgba(81, 81, 81, 0.06) 33.3%, rgba(81, 81, 81, 0.06) 66.6%,
-      rgba(186, 186, 186, 0.06) 66.6%, rgba(186, 186, 186, 0.06) 99%), linear-gradient(85deg, rgba(225, 225, 225, 0.04) 0%,
-      rgba(225, 225, 225, 0.04) 33.3%, rgba(95, 95, 95, 0.04) 33.3%, rgba(95, 95, 95, 0.04) 66.6%, rgba(39, 39, 39, 0.04) 66.6%,
-      rgba(39, 39, 39, 0.04) 99%), linear-gradient(128deg, rgba(184, 184, 184, 0.06) 0%, rgba(184, 184, 184, 0.06) 33.3%,
-      rgba(0, 0, 0, 0.06) 33.3%, rgba(0, 0, 0, 0.06) 66.6%, rgba(140, 140, 140, 0.06) 66.6%,
-      rgba(140, 140, 140, 0.06) 99.89999999999999%), linear-gradient(323deg, rgba(40, 40, 40, 0.07) 0%,
-      rgba(40, 40, 40, 0.07) 33.3%, rgba(214, 214, 214, 0.07) 33.3%, rgba(214, 214, 214, 0.07) 66.6%,
-      rgba(190, 190, 190, 0.07) 66.6%, rgba(190, 190, 190, 0.07) 99.89999999999999%), linear-gradient(61deg, rgba(230, 230, 230, 0) 0%,
-      rgba(230, 230, 230, 0) 33.3%, rgba(241, 241, 241, 0) 33.3%, rgba(241, 241, 241, 0) 66.6%, rgba(55, 55, 55, 0) 66.6%,
-      rgba(55, 55, 55, 0) 99%), linear-gradient(0deg, #2625e3, #0bbaef);
-      height: 100%;
-   
+body,
+html {
+   background-image: linear-gradient(52deg, rgba(163, 163, 163, 0.09) 0%, rgba(163, 163, 163, 0.09) 33.3%, rgba(100, 100, 100, 0.09) 33.3%, rgba(100, 100, 100, 0.09) 66.6%, rgba(162, 162, 162, 0.09) 66.6%, rgba(162, 162, 162, 0.09) 99%),
+      linear-gradient(258deg, rgba(193, 193, 193, 0.06) 0%, rgba(193, 193, 193, 0.06) 33.3%, rgba(169, 169, 169, 0.06) 33.3%, rgba(169, 169, 169, 0.06) 66.6%, rgba(92, 92, 92, 0.06) 66.6%, rgba(92, 92, 92, 0.06) 99%),
+      linear-gradient(129deg, rgba(45, 45, 45, 0.03) 0%, rgba(45, 45, 45, 0.03) 33.3%, rgba(223, 223, 223, 0.03) 33.3%, rgba(223, 223, 223, 0.03) 66.6%, rgba(173, 173, 173, 0.03) 66.6%, rgba(173, 173, 173, 0.03) 99%),
+      linear-gradient(280deg, rgba(226, 226, 226, 0.06) 0%, rgba(226, 226, 226, 0.06) 33.3%, rgba(81, 81, 81, 0.06) 33.3%, rgba(81, 81, 81, 0.06) 66.6%, rgba(186, 186, 186, 0.06) 66.6%, rgba(186, 186, 186, 0.06) 99%),
+      linear-gradient(85deg, rgba(225, 225, 225, 0.04) 0%, rgba(225, 225, 225, 0.04) 33.3%, rgba(95, 95, 95, 0.04) 33.3%, rgba(95, 95, 95, 0.04) 66.6%, rgba(39, 39, 39, 0.04) 66.6%, rgba(39, 39, 39, 0.04) 99%),
+      linear-gradient(128deg, rgba(184, 184, 184, 0.06) 0%, rgba(184, 184, 184, 0.06) 33.3%, rgba(0, 0, 0, 0.06) 33.3%, rgba(0, 0, 0, 0.06) 66.6%, rgba(140, 140, 140, 0.06) 66.6%, rgba(140, 140, 140, 0.06) 99.89999999999999%),
+      linear-gradient(323deg, rgba(40, 40, 40, 0.07) 0%, rgba(40, 40, 40, 0.07) 33.3%, rgba(214, 214, 214, 0.07) 33.3%, rgba(214, 214, 214, 0.07) 66.6%, rgba(190, 190, 190, 0.07) 66.6%, rgba(190, 190, 190, 0.07) 99.89999999999999%),
+      linear-gradient(61deg, rgba(230, 230, 230, 0) 0%, rgba(230, 230, 230, 0) 33.3%, rgba(241, 241, 241, 0) 33.3%, rgba(241, 241, 241, 0) 66.6%, rgba(55, 55, 55, 0) 66.6%, rgba(55, 55, 55, 0) 99%), linear-gradient(0deg, #2625e3, #0bbaef);
+   height: 100%;
+   margin-top: 2%;
 }
 
 .App {
-  text-align: center;
-  position: relative;
-
+   text-align: center;
+   position: relative;
 }
 
 #tableau {
-  margin-left: auto;
-  margin-right: auto;
+   margin-left: auto;
+   margin-right: auto;
 }
 
 #one {
-  padding-bottom: 1%;
+   padding-bottom: 1%;
 }
 
 .child {
-  padding: 1%;
+   padding: 1%;
 }
 
 td,
 tr,
 th,
 caption {
-  border: 1px solid black !important;
-  padding: 0.1%;
+   border: 1px solid black !important;
+   padding: 0.1%;
 }
 
 .nextStatut {
-  background-color: #238ac0;
-  color: white;
+   background-color: #238ac0;
+   color: white;
 }
 
 .currentStatut {
-  background-color: #6723c0;
-  color: white;
+   background-color: #6723c0;
+   color: white;
 }
 
 .oldStatut {
-  background-color: #ffffff;
-  color: black;
-  text-decoration: line-through;
+   background-color: #ffffff;
+   color: black;
+   text-decoration: line-through;
 }
 
 .statuts p {
-  margin-top: 4%;
-  border: 0.2em solid;
-  margin: 2%;
-  border-radius: 0.5rem;
-  padding: 1em;
+   margin-top: 4%;
+   border: 0.2em solid;
+   margin: 2%;
+   border-radius: 0.5rem;
+   padding: 1em;
 }
 
-
 .statuts {
-  margin: 1%;
-  height: 100%;
+   margin: 1%;
+   height: 100%;
 }
 
 #Dapp {
-  background-color: #80D0C7;
-  border: black 0.2em solid;
-  padding: 1em;
-  border-radius: 1rem;
-  margin: 1%;
-  margin-top: 10rem;
+   background-color: #80d0c7;
+   border: black 0.2em solid;
+   padding: 1em;
+   border-radius: 1rem;
+   margin: 1%;
+   margin-top: 10rem;
 }
 
 .child {
-  border: solid black 0.2em;
-  border-radius: 1rem;
-  overflow: hidden;
-  margin: 1%;
+   border: solid black 0.2em;
+   border-radius: 1rem;
+   overflow: hidden;
+   margin: 1%;
 }
 
 #contrat {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
 }
 
 .parent {
-  padding-top: 0.3%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin-bottom: 3%;
+   padding-top: 0.3%;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-around;
+   margin-bottom: 3%;
 }
 
-
-
 .enregistrement {
-  color: whitesmoke;
+   color: whitesmoke;
 }
 
 #walletmanquant {
-  text-align: center;
-  margin-top: 5%;
+   text-align: center;
+   margin-top: 5%;
 }
 
 div button {
-  padding: auto;
-  margin-top: 2%;
-  margin-left: 2%;
-  border-radius: 0.5rem;
-  transition: background-color 1s;
+   padding: auto;
+   margin-top: 2%;
+   margin-left: 2%;
+   border-radius: 0.5rem;
+   transition: background-color 1s;
 }
 
 button:hover {
-  background-color: #238ac0;
+   background-color: #238ac0;
 }
 
 input {
-  border-radius: 0.5rem;
-  border: grey solid;
+   border-radius: 0.5rem;
+   border: grey solid;
 }
 
 header {
-  text-align: center;
-  /* background-color: #6723c0; */
+   text-align: center;
+   /* background-color: #6723c0; */
 }
 
 header div {
-  margin-bottom: 1%;
-  /* background-color: #ffffff; */
-  padding: 1.5%;
+   margin-bottom: 1%;
+   /* background-color: #ffffff; */
+   padding: 1.5%;
 }
 
 .message {
-  background-image: linear-gradient(-225deg, #3D4E81 0%, #5753C9 48%, #6E7FF3 100%);
-  color: white;
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  border-radius: 0.5rem;
-  margin-top: 2em;
-  animation-duration: 5s;
-  animation-name: slidein;
-  padding: 0.4em;
+   background-image: linear-gradient(-225deg, #3d4e81 0%, #5753c9 48%, #6e7ff3 100%);
+   color: white;
+   position: fixed;
+   top: 0;
+   left: 50%;
+   transform: translateX(-50%);
+   text-align: center;
+   border-radius: 0.5rem;
+   margin-top: 2em;
+   animation-duration: 5s;
+   animation-name: slidein;
+   padding: 0.4em;
 }
 
 #mpadding {
-  padding: 1rem;
+   padding: 1rem;
 }
 
 /* On défini l'alert a none */
 #alert {
-  display: none;
+   display: none;
 }
 
 @keyframes slidein {
-  from {
-    margin-left: 100%;
-    /* width: 300%; */
-  }
+   from {
+      margin-left: 100%;
+      /* width: 300%; */
+   }
 
-  to {
-    margin-left: 0%;
-    /* width: 100%;  */
-  }
+   to {
+      margin-left: 0%;
+      /* width: 100%;  */
+   }
 }
 
-
 .Animation {
-  background-image: linear-gradient(-225deg, #3D4E81 0%, #5753C9 48%, #6E7FF3 100%);
-  color: white;
-  position: fixed;
-  z-index: 2;
-  margin-left: 40%;
-  margin-right: 40%;
-  animation-duration: 1s;
-  animation-name: anim;
-  display: none;
-  border-radius: 1rem;
-  padding: 1rem;
+   background-image: linear-gradient(-225deg, #3d4e81 0%, #5753c9 48%, #6e7ff3 100%);
+   color: white;
+   position: fixed;
+   z-index: 2;
+   margin-left: 40%;
+   margin-right: 40%;
+   animation-duration: 1s;
+   animation-name: anim;
+   display: none;
+   border-radius: 1rem;
+   padding: 1rem;
 }
 
 @keyframes anim {
-  0% {
-    transform: scale(0);
-    transform-origin: 100% 50%;
-  }
+   0% {
+      transform: scale(0);
+      transform-origin: 100% 50%;
+   }
 
-  100% {
-    transform: scale(1);
-    transform-origin: 100% 50%;
-  }
+   100% {
+      transform: scale(1);
+      transform-origin: 100% 50%;
+   }
 }
 
 #vote {
-  margin: 10%;
-  width: 60%;
+   margin: 10%;
+   width: 60%;
 }
 
 a {
-  color: #ffffff !important;
+   color: #ffffff !important;
 }
 
 #finvote {
-  position: absolute;
-  z-index: 2;
-  /* height: 50%; */
-  /* width: 50%; */
-  background-image: linear-gradient(-225deg, #7085B6 0%, #87A7D9 50%, #DEF3F8 100%);
-  left: 50%;
-  border-radius: 1rem;
-  border: rgb(255, 255, 255) solid 5px;
-  text-align: center;
-  display: none;
-  animation-duration: 3s;
-  animation-name: result;
-  transform: translateX(-50%);
+   position: absolute;
+   z-index: 2;
+   background-image: linear-gradient(-225deg, #7085b6 0%, #87a7d9 50%, #def3f8 100%);
+   left: 50%;
+   border-radius: 1rem;
+   border: rgb(255, 255, 255) solid 5px;
+   text-align: center;
+   display: none;
+   animation-duration: 3s;
+   animation-name: result;
+   transform: translateX(-50%);
+   margin-top: 3%;
 }
 
-
 .close {
-  margin-right: 0.2%;
-  margin-top: 0.2%;
-  border: none;
-  background-color: transparent;
+   margin-right: 0.2%;
+   margin-top: 0.2%;
+   border: none;
+   background-color: transparent;
 }
 
 .thebutton {
-  display: flex;
-  justify-content: right;
+   display: flex;
+   justify-content: right;
 }
 
 @keyframes result {
-	0% {
-		opacity: 0;
-	}
+   0% {
+      opacity: 0;
+   }
 
-	50% {
-		opacity: 0.2;
-	}
+   50% {
+      opacity: 0.2;
+   }
 
-	100% {
-		opacity: 1;
-	}
+   100% {
+      opacity: 1;
+   }
 }
 
-.winner{
-margin-bottom: 3em;
-margin-left: 3em;
-margin-right: 3em;
+.winner {
+   margin-bottom: 3em;
+   margin-left: 3em;
+   margin-right: 3em;
 }
 
 #proposgagantes {
-  list-style-type: none;
+   list-style-type: none;
 }
 
 #buttonmarge {
-  margin-top: 10%;
+   margin-top: 10%;
 }
