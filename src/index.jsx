@@ -13,16 +13,18 @@ import Navbar from "./Components/Navbar"
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
    <React.StrictMode>
-      <header>
-         <Navbar />
-      </header>
-      <Router>
-         <Routes>
-            <Route exact path="/Demo" element={<Demo />}></Route>
-            <Route exact path="" element={<Accueil />}></Route>
-            <Route path="*" element={<Erreur />}></Route>
-         </Routes>
-      </Router>
+      <div id="divP">
+         <header>
+            <Navbar />
+         </header>
+         <Router>
+            <Routes>
+               <Route exact path="/Demo" element={<Demo />}></Route>
+               <Route exact path="" element={<Accueil />}></Route>
+               <Route path="*" element={<Erreur />}></Route>
+            </Routes>
+         </Router>
+      </div>
    </React.StrictMode>
 )
 
