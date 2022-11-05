@@ -1,9 +1,9 @@
 import { ethers } from "ethers"
 import { useEffect, useState } from "react"
-import Vote from "../artifacts/contracts/Vote.sol/Vote.json"
+import VoteDemo from "../artifacts/contracts/VoteDemo.sol/VoteDemo.json"
 import Spinner from "react-bootstrap/Spinner"
 
-export default function Init({ uncontrat, statut, contract, setBlockTime, setVoter, set, addr, setSet, setGet, setAddress, setId, setOwner, setContract, setStatus, get, owner }) {
+export default function Init({ statut, contract, setBlockTime, setVoter, set, addr, setSet, setGet, setAddress, setId, setOwner, setContract, setStatus, get, owner }) {
    const [bool, setBool] = useState()
    const [loader, setLoader] = useState()
 
@@ -57,13 +57,13 @@ export default function Init({ uncontrat, statut, contract, setBlockTime, setVot
       try {
          let address
          if (id === 5) {
-            address = "0x75620beeFfB66481A46AEf3a17734f7f37BacE02"
+            address = "0x4d4E3e4f57a4E1269793a53E21bD0ef6cCA562fE"
          } else if (id === 11155111) {
-            address = "0x3522F5E6a744C16dd019E9Ec314AD45868dccFc6"
+            address = "0x9572fDb225755072ebb3775eE2F9615b6708B02a"
          }
-         const getContract = new ethers.Contract(address, Vote.abi, provider)
+         const getContract = new ethers.Contract(address, VoteDemo.abi, provider)
          const signer = provider.getSigner()
-         const setTheContract = new ethers.Contract(address, Vote.abi, signer)
+         const setTheContract = new ethers.Contract(address, VoteDemo.abi, signer)
          const owner = await getContract.owner()
          setOwner(owner)
          setSet(setTheContract)

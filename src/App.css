@@ -67,11 +67,10 @@ caption {
 }
 
 #Dapp {
-   background-color: #80d0c7;
-   border: black 0.2em solid;
-   padding: 1em;
-   border-radius: 1rem;
-   margin: 1%;
+   border: 3px solid rgb(255, 255, 255, 0.3) !important;
+   padding: 2%;
+   border-radius: 0.5rem;
+   background-color: rgb(255, 255, 255, 0.1);
    margin-top: 10rem;
 }
 
@@ -96,6 +95,11 @@ caption {
    flex-wrap: wrap;
    justify-content: space-around;
    margin-bottom: 3%;
+}
+
+#divote {
+   padding-left: 3%;
+   padding-right: 3%;
 }
 
 .enregistrement {
@@ -207,9 +211,10 @@ a {
 }
 
 #finvote {
-   position: absolute;
+   position: fixed;
    z-index: 2;
    background-image: linear-gradient(-225deg, #7085b6 0%, #87a7d9 50%, #def3f8 100%);
+   opacity: 0.9;
    left: 50%;
    border-radius: 1rem;
    border: rgb(255, 255, 255) solid 5px;
@@ -218,7 +223,6 @@ a {
    animation-duration: 3s;
    animation-name: result;
    transform: translateX(-50%);
-   margin-top: 3%;
 }
 
 .close {
@@ -257,10 +261,6 @@ a {
    list-style-type: none;
 }
 
-#buttonmarge {
-   margin-top: 10%;
-}
-
 #Nav {
    padding: 1%;
 }
@@ -272,4 +272,9 @@ a {
 
 #hstatuts {
    margin-bottom: 10%;
+}
+
+#Erreur {
+   text-align: center;
+   vertical-align: middle;
 }

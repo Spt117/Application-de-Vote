@@ -39,12 +39,13 @@ function Demo() {
    }
 
    async function getWinner() {
-      const propoGagnantes = await set.getResult()
+      const event = await set.queryFilter("GetWinning", blockTime, "latest")
+      let propoGagnantes = event[event.length - 1].args[0].map((BN) => BN.toNumber())
       let array = []
       for (let i = 0; i < propoGagnantes.length; i++) {
-         let propositions = await set.getOneProposal(propoGagnantes[i].toNumber())
+         let propositions = await set.getOneProposal(propoGagnantes[i])
          array.push({
-            id: propoGagnantes[i].toNumber(),
+            id: propoGagnantes[i],
             proposition: propositions[0],
             votes: propositions[1].toNumber(),
          })
@@ -105,7 +106,7 @@ function Demo() {
                   <Dapp setErreur={setErreur} id={id} voter={voter} get={get} set={set} owner={owner} setStatus={setStatus} statut={statut} addr={addr} />
                </div>
             </div>
-            <Propositions set={set} voter={voter} blockTime={blockTime} addr={addr} contract={contract} />
+            <Propositions statut={statut} set={set} voter={voter} blockTime={blockTime} addr={addr} contract={contract} />
          </div>
       </div>
    )

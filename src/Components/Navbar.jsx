@@ -10,7 +10,7 @@ export default function Navbar() {
             <Nav.Link href="/Demo">Démo</Nav.Link>
          </Nav.Item>
          <Nav.Item className="Item">
-            <Nav.Link href="/Acheter">Acheter</Nav.Link>
+            <Nav.Link href="/Application">Application</Nav.Link>
          </Nav.Item>
       </Nav>
    )
