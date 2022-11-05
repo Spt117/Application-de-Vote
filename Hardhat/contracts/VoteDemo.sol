@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 
 pragma solidity 0.8.16;
-import "./Ownable.sol";
+import "./OwnableC.sol";
 
-contract Vote is Ownable {
+contract VoteDemo is OwnableC {
     constructor() {
         blockEvent = block.number;
     }
@@ -57,7 +57,6 @@ contract Vote is Ownable {
     function getVoter(address _addr)
         external
         view
-        onlyVoters
         returns (Voter memory)
     {
         return voters[_addr];
