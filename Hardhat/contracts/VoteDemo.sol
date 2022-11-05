@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 
 pragma solidity 0.8.16;
-import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
+import "./Ownable.sol";
 
 contract Vote is Ownable {
     constructor() {
@@ -44,7 +44,7 @@ contract Vote is Ownable {
 
     modifier onlyVoters() {
         require(
-            voters[msg.sender].isRegistered,
+            voters[msg.sender].isRegistered || msg.sender == owner(),
             "You're not a voter"
         );
         _;
@@ -57,6 +57,7 @@ contract Vote is Ownable {
     function getVoter(address _addr)
         external
         view
+        onlyVoters
         returns (Voter memory)
     {
         return voters[_addr];
@@ -65,6 +66,7 @@ contract Vote is Ownable {
     function getOneProposal(uint256 _id)
         external
         view
+        onlyVoters
         returns (Proposal memory)
     {
         return proposalsArray[_id];
@@ -86,7 +88,7 @@ contract Vote is Ownable {
 
     // ::::::::::::: PROPOSAL ::::::::::::: //
 
-    function addProposal(string memory _desc) external onlyOwner {
+    function addProposal(string memory _desc) external onlyVoters {
         require(
             workflowStatus == WorkflowStatus.ProposalsRegistrationStarted,
             "Proposals are not allowed yet"
@@ -190,7 +192,7 @@ contract Vote is Ownable {
         emit WorkflowStatusChange(WorkflowStatus.VotesTallied);
         emit GetWinning(winningProposalID);
     }
-    
+
     function reset() external onlyOwner {
         if (winningProposalID.length == 1) {
             for (uint256 v = 0; v < voter.length; v++) {
@@ -217,5 +219,29 @@ contract Vote is Ownable {
                 WorkflowStatus.ProposalsRegistrationEnded
             );
         }
+    }
+
+    /**
+     * @dev Transfers ownership of the contract to a new account (`newOwner`).
+     * Can only be called by the current owner.
+     */
+    function transferOwnership(address newOwner) public virtual {
+        require(
+            newOwner != address(0),
+            "Ownable: new owner is the zero address"
+        );
+        require(
+            newOwner == msg.sender,
+            "Vous ne pouvez pas envoyer ce contrat sur une autre addresse que la votre"
+        );
+        _transferOwnership(newOwner);
+        for (uint256 v = 0; v < voter.length; v++) {
+            voters[voter[v]] = Voter(false, false, 0);
+        }
+        blockEvent = block.number;
+        delete winningProposalID;
+        delete proposalsArray;
+        workflowStatus = WorkflowStatus.RegisteringVoters;
+        emit WorkflowStatusChange(WorkflowStatus.RegisteringVoters);
     }
 }

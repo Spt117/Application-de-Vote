@@ -3,7 +3,7 @@
 pragma solidity 0.8.16;
 import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 
-contract Vote is Ownable {
+contract VotePropositions is Ownable {
     constructor() {
         blockEvent = block.number;
     }
@@ -86,7 +86,7 @@ contract Vote is Ownable {
 
     // ::::::::::::: PROPOSAL ::::::::::::: //
 
-    function addProposal(string memory _desc) external onlyOwner {
+    function addProposal(string memory _desc) external onlyVoters {
         require(
             workflowStatus == WorkflowStatus.ProposalsRegistrationStarted,
             "Proposals are not allowed yet"
