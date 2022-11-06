@@ -102,6 +102,7 @@ export default function Compte({ addr, id, owner, set, get, setOwner, voter, con
       return (
          <div className="parent">
             <div className="child">
+               <h4>Informations de connexion</h4>
                <p>
                   <strong>Réseau : </strong>
                   {network(id)}
@@ -120,7 +121,8 @@ export default function Compte({ addr, id, owner, set, get, setOwner, voter, con
             <div className="child">
                {owner !== addr && (
                   <div className="owner">
-                     <h6>Tester le système de vote :</h6>
+                     <h4>Tester le système de vote</h4>
+                     <br />
                      <p>
                         Vous pouvez récupérer la propriété du contrat pour l'essayer ! <br /> Rentrez votre addresse ci dessous :
                      </p>

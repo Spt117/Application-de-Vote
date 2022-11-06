@@ -9,12 +9,12 @@ const hre = require("hardhat")
 async function main() {
    // const lockedAmount = hre.ethers.utils.parseEther("1");
    console.log("Début du déploiement !")
-   const VoteDemo = await hre.ethers.getContractFactory("VoteDemo")
+   const VoteFactory = await hre.ethers.getContractFactory("VoteFactory")
    console.log("Déploiement en cours !")
-   const votedemo = await VoteDemo.deploy()
+   const voteFactory = await VoteFactory.deploy()
    console.log("Déploiement en phase terminale !")
-   await votedemo.deployed()
-   console.log("Le contrat est déployé à l'adresse: " + votedemo.address)
+   await voteFactory.deployed()
+   console.log("Le contrat est déployé à l'adresse: " + voteFactory.address)
 }
 
 // We recommend this pattern to be able to use async/await everywhere

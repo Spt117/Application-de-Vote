@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import Demo from "./Pages/Demo"
 import Erreur from "./Components/Erreur"
 import Navbar from "./Components/Navbar"
+import Application from "./Pages/Application"
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
@@ -18,8 +19,9 @@ root.render(
       </header>
       <Router>
          <Routes>
-            <Route exact path="/Demo" element={<Demo />}></Route>
             <Route exact path="" element={<Accueil />}></Route>
+            <Route exact path="/Application" element={<Application />}></Route>
+            <Route exact path="/Demo" element={<Demo />}></Route>
             <Route path="*" element={<Erreur />}></Route>
          </Routes>
       </Router>
