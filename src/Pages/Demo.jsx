@@ -5,6 +5,7 @@ import Compte from "../Components/Compte"
 import Propositions from "../Components/Propositions"
 import Statuts from "../Components/Statuts"
 import Alerte from "../Components/Alerte"
+import Nowallet from "../Components/Nowallet"
 
 function Demo() {
    const [owner, setOwner] = useState()
@@ -62,6 +63,7 @@ function Demo() {
 
    return (
       <div>
+         <Nowallet />
          <div className="Animation">{erreur}</div>
          <div id="finvote">
             <div className="thebutton">

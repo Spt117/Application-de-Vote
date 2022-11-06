@@ -110,6 +110,37 @@ caption {
 #walletmanquant {
    text-align: center;
    margin-top: 5%;
+   margin-left: 50%;
+   transform: translateX(-50%);
+   display: block;
+   background-color: rgb(255, 255, 255, 0.1);
+   padding: 2%;
+   border-radius: 0.5rem;
+   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.standard {
+   text-align: center;
+   margin-top: 3%;
+   margin-left: 50%;
+   transform: translateX(-50%);
+   display: block;
+   background-color: rgb(255, 255, 255, 0.1);
+   padding: 2%;
+   border-radius: 0.5rem;
+   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.présentationp {
+   text-align: justify;
+}
+
+#présentation {
+   padding-bottom: 0.5%;
+}
+
+#accueil {
+   text-align: center;
 }
 
 div button {
@@ -133,12 +164,10 @@ input {
 
 header {
    text-align: center;
-   /* background-color: #6723c0; */
 }
 
 header div {
    margin-bottom: 1%;
-   /* background-color: #ffffff; */
    padding: 1.5%;
 }
 
@@ -219,7 +248,6 @@ a {
    border-radius: 1rem;
    border: rgb(0, 0, 0) solid 1px;
    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.5);
-
    text-align: center;
    display: none;
    animation-duration: 3s;
@@ -279,4 +307,22 @@ a {
 
 li {
    text-align: left;
+}
+
+#tester {
+   padding: 1%;
+   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.5);
+   border-radius: 0.5rem;
+   text-decoration: none;
+   transition: background-color 1s;
+   margin-bottom: 1%;
+   display: inline-block;
+}
+
+#tester:hover {
+   background-color: rgba(255, 255, 255, 0.1);
+}
+
+#buisness {
+   text-align: justify;
 }
