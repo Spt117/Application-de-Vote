@@ -6,7 +6,7 @@
       linear-gradient(85deg, rgba(225, 225, 225, 0.04) 0%, rgba(225, 225, 225, 0.04) 33.3%, rgba(95, 95, 95, 0.04) 33.3%, rgba(95, 95, 95, 0.04) 66.6%, rgba(39, 39, 39, 0.04) 66.6%, rgba(39, 39, 39, 0.04) 99%),
       linear-gradient(128deg, rgba(184, 184, 184, 0.06) 0%, rgba(184, 184, 184, 0.06) 33.3%, rgba(0, 0, 0, 0.06) 33.3%, rgba(0, 0, 0, 0.06) 66.6%, rgba(140, 140, 140, 0.06) 66.6%, rgba(140, 140, 140, 0.06) 99.89999999999999%),
       linear-gradient(323deg, rgba(40, 40, 40, 0.07) 0%, rgba(40, 40, 40, 0.07) 33.3%, rgba(214, 214, 214, 0.07) 33.3%, rgba(214, 214, 214, 0.07) 66.6%, rgba(190, 190, 190, 0.07) 66.6%, rgba(190, 190, 190, 0.07) 99.89999999999999%),
-      linear-gradient(61deg, rgba(230, 230, 230, 0) 0%, rgba(230, 230, 230, 0) 33.3%, rgba(241, 241, 241, 0) 33.3%, rgba(241, 241, 241, 0) 66.6%, rgba(55, 55, 55, 0) 66.6%, rgba(55, 55, 55, 0) 99%), linear-gradient(0deg, #2625e3, #0bbaef);
+      linear-gradient(61deg, rgba(230, 230, 230, 0) 0%, rgba(230, 230, 230, 0) 33.3%, rgba(241, 51, 51, 0) 33.3%, rgba(51, 51, 51, 0) 66.6%, rgba(55, 55, 55, 0) 66.6%, rgba(55, 55, 55, 0) 99%), linear-gradient(0deg, #2625e3, #0bbaef);
    min-height: 100vh;
    padding-bottom: 2%;
 }
@@ -29,8 +29,9 @@ td,
 tr,
 th,
 caption {
-   border: 1px solid black !important;
+   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.5);
    padding: 0.1%;
+   background-color: rgba(255, 255, 255, 0.1);
 }
 
 .nextStatut {
@@ -58,7 +59,7 @@ caption {
 }
 
 .statuts {
-   border: 3px solid rgb(255, 255, 255, 0.3) !important;
+   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.5);
    margin: 1%;
    padding: 2%;
    height: 100%;
@@ -67,15 +68,15 @@ caption {
 }
 
 #Dapp {
-   border: 3px solid rgb(255, 255, 255, 0.3) !important;
    padding: 2%;
    border-radius: 0.5rem;
    background-color: rgb(255, 255, 255, 0.1);
    margin-top: 10rem;
+   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 .child {
-   border: solid rgb(255, 255, 255, 0.5) 0.2em;
+   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.5);
    border-radius: 1rem;
    overflow: hidden;
    margin: 1%;
@@ -116,16 +117,18 @@ div button {
    margin-top: 2%;
    margin-left: 2%;
    border-radius: 0.5rem;
+   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.5);
    transition: background-color 1s;
 }
 
 button:hover {
-   background-color: #238ac0;
+   background-color: rgba(255, 255, 255, 0.1);
 }
 
 input {
    border-radius: 0.5rem;
    border: grey solid;
+   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 header {
@@ -151,11 +154,7 @@ header div {
    margin-top: 2em;
    animation-duration: 5s;
    animation-name: slidein;
-   padding: 0.4em;
-}
-
-#mpadding {
-   padding: 1rem;
+   padding: 0.7em;
 }
 
 /* On défini l'alert a none */
@@ -176,6 +175,7 @@ header div {
 }
 
 .Animation {
+   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.5);
    background-image: linear-gradient(-225deg, #3d4e81 0%, #5753c9 48%, #6e7ff3 100%);
    color: white;
    position: fixed;
@@ -184,9 +184,9 @@ header div {
    margin-right: 40%;
    animation-duration: 1s;
    animation-name: anim;
+   border-radius: 0.5rem;
+   padding: 0.6rem;
    display: none;
-   border-radius: 1rem;
-   padding: 1rem;
 }
 
 @keyframes anim {
@@ -217,7 +217,9 @@ a {
    opacity: 0.9;
    left: 50%;
    border-radius: 1rem;
-   border: rgb(255, 255, 255) solid 5px;
+   border: rgb(0, 0, 0) solid 1px;
+   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.5);
+
    text-align: center;
    display: none;
    animation-duration: 3s;
@@ -226,15 +228,11 @@ a {
 }
 
 .close {
-   margin-right: 0.2%;
-   margin-top: 0.2%;
    border: none;
    background-color: transparent;
-}
-
-.thebutton {
-   display: flex;
-   justify-content: right;
+   float: right;
+   margin-right: 1%;
+   margin-top: 1%;
 }
 
 @keyframes result {
@@ -277,4 +275,8 @@ a {
 #Erreur {
    text-align: center;
    vertical-align: middle;
+}
+
+li {
+   text-align: left;
 }

@@ -62,9 +62,7 @@ function Demo() {
 
    return (
       <div>
-         <div className="Animation">
-            <p>{erreur}</p>
-         </div>
+         <div className="Animation">{erreur}</div>
          <div id="finvote">
             <div className="thebutton">
                <button className="close" onClick={close} title="Fermer">
@@ -86,7 +84,7 @@ function Demo() {
                   <ul id="proposgagantes">
                      {winner.map((propo, index) => (
                         <li key={index}>
-                           La proposition numéro {propo.id} : "{propo.proposition}"
+                           - La proposition numéro {propo.id} : "{propo.proposition}"
                         </li>
                      ))}
                   </ul>

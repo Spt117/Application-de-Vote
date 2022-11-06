@@ -4,15 +4,16 @@ import Spinner from "react-bootstrap/Spinner"
 export default function Compte({ addr, id, owner, set, get, setOwner, voter, contract, statut }) {
    const [loaderStatut, setLoaderStatut] = useState()
    const [loader, setLoader] = useState()
-   const [ownerShip, setOwnerShip] = useState()
+   const [ownerShip, setOwnerShip] = useState("")
    const truncate = /^(0x[a-zA-Z0-9]{4})[a-zA-Z0-9]+([a-zA-Z0-9]{4})$/
 
    useEffect(() => {
+      if (addr && addr !== owner) setButtonOwner()
       if (owner) {
          eventOwner()
       }
       // eslint-disable-next-line
-   }, [owner])
+   }, [owner, ownerShip, addr])
 
    //formater l'adresse de connexion à afficher
    function truncateAddr(address) {
@@ -90,6 +91,13 @@ export default function Compte({ addr, id, owner, set, get, setOwner, voter, con
       }
    }
 
+   function setButtonOwner() {
+      const button = document.querySelector("#buttonowner")
+      if (ownerShip === "") {
+         button.disabled = true
+      } else button.disabled = false
+   }
+
    if (addr)
       return (
          <div className="parent">
@@ -117,7 +125,9 @@ export default function Compte({ addr, id, owner, set, get, setOwner, voter, con
                         Vous pouvez récupérer la propriété du contrat pour l'essayer ! <br /> Rentrez votre addresse ci dessous :
                      </p>
                      <input onChange={(e) => setOwnerShip(e.target.value)} placeholder=" Votre addresse"></input>
-                     <button onClick={getOwnership}>OK {loader && <Spinner animation="border" role="status" size="sm" />}</button>
+                     <button id="buttonowner" onClick={getOwnership}>
+                        Valider {loader && <Spinner animation="border" role="status" size="sm" />}
+                     </button>
                   </div>
                )}
                {owner === addr && (

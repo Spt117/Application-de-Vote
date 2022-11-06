@@ -5,16 +5,17 @@ import Spinner from "react-bootstrap/esm/Spinner"
 export default function Dapp({ owner, set, addr, statut, voter, setErreur }) {
    const [loader, setLoader] = useState()
    const [loaderVote, setLoaderVote] = useState()
-   const [proposition, setProposition] = useState()
+   const [proposition, setProposition] = useState("")
    const [vote, setVote] = useState()
    const [loaderRegister, setLoaderRegister] = useState()
    const [addrRegister, setAddrRegister] = useState()
    const [boolVoted, setBoolVoted] = useState(false)
 
    useEffect(() => {
+      if (voter && statut === 1) setButtonPropo()
       if (statut === 3 || statut === 4 || statut === 5) hasVoted()
       // eslint-disable-next-line
-   }, [registerVoter, statut])
+   }, [registerVoter, statut, proposition, ajouterProposition])
 
    // enregister les électeurs
    async function registerVoter() {
@@ -45,6 +46,7 @@ export default function Dapp({ owner, set, addr, statut, voter, setErreur }) {
          setErreur("Echec de l'enregistrement !")
       } finally {
          setLoader(false)
+         setProposition("")
       }
    }
 
@@ -68,6 +70,13 @@ export default function Dapp({ owner, set, addr, statut, voter, setErreur }) {
       } else setBoolVoted(false)
    }
 
+   function setButtonPropo() {
+      const button = document.querySelector("#buttonpropo")
+      if (proposition === "") {
+         button.disabled = true
+      } else button.disabled = false
+   }
+
    if ((statut === 0 && addr === owner && addr !== undefined) || ((statut === 1 || statut === 3 || statut === 4 || statut === 5) && voter))
       return (
          <div id="Dapp">
@@ -83,7 +92,9 @@ export default function Dapp({ owner, set, addr, statut, voter, setErreur }) {
                   <div>
                      <h5>Vous pouvez enregistrer votre proposition</h5>
                      <input id="propo" placeholder="Votre proposition" onChange={(e) => setProposition(e.target.value)}></input>
-                     <button onClick={ajouterProposition}>Enregistrer {loader && <Spinner animation="border" role="status" size="sm" />}</button>
+                     <button id="buttonpropo" onClick={ajouterProposition}>
+                        Enregistrer {loader && <Spinner animation="border" role="status" size="sm" />}
+                     </button>
                   </div>
                )}
                {(statut === 3 || statut === 4 || statut === 5) && (
@@ -92,7 +103,7 @@ export default function Dapp({ owner, set, addr, statut, voter, setErreur }) {
                         <div>
                            <h5>Vous pouvez voter !</h5>
                            <input placeholder="Numéro de la proposition" onChange={(e) => setVote(e.target.value)} />
-                           <button id="vote" onClick={voted}>
+                           <button className="buttons" onClick={voted}>
                               Voter {loaderVote && <Spinner animation="border" role="status" size="sm" />}
                            </button>
                         </div>
