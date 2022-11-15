@@ -1,6 +1,6 @@
 import { ethers } from "ethers"
 import { useEffect, useState } from "react"
-import VoteDemo from "../artifacts/contracts/VoteDemo.sol/VoteDemo.json"
+import VoteDemo from "../../artifacts/contracts/VoteDemo.sol/VoteDemo.json"
 import Spinner from "react-bootstrap/Spinner"
 
 export default function Init({ statut, contract, setBlockTime, setVoter, set, addr, setSet, setGet, setAddress, setId, setOwner, setContract, setStatus, get, owner }) {
