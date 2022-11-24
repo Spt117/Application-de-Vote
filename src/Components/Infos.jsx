@@ -33,7 +33,7 @@ export default function Infos({ id, addr, contractVote, idContractVote, voter })
                   <b>Contrat : </b>
                   {contractVote}
                   <br />
-                  <b> Identifiant :</b> {idContractVote}
+                  <b> Identifiant du contrat :</b> {idContractVote}
                </p>
             )}
             {voter && <h6 className="enregistrement">Vous êtes enregistré pour cette session de vote !</h6>}
